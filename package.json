@@ -1,0 +1,21 @@
+{
+  "name": "MEAN",
+  "version": "0.0.3",
+  "description": "MEAN Application from Packt Publishing Book 'MEAN Web Development'",
+  "main": "app/controllers/index.server.controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anderson.luiz.sjc@gmail.com",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "compression": "~1.6.1",
+    "body-parser": "~1.15.0",
+    "method-override": "~2.3.5",
+    "ejs": "~2.4.1",
+    "express-session": "~1.13.0",
+    "mongoose": "~4.4.16"
+  }
+}
