@@ -34,6 +34,8 @@ module.exports = function () {
 	
 	//configurando rotas
 	require('../app/routes/index.server.routes')(app);
+	require('../app/routes/playsession.server.routes')(app);
+	require('../app/routes/price.server.routes')(app);
 	require('../app/routes/register.server.routes')(app);
 
 	app.use(express.static('./public'));

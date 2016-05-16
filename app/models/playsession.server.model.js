@@ -15,11 +15,3 @@ var PlaySessionSchema = new Schema({
 mongoose.model('PlaySession', PlaySessionSchema);
 
 //http://stackoverflow.com/questions/15462635/why-use-model-export-in-separate-model-files
-
-// outra sintaxe:
-// var MySchema = mongoose.Schema({
-//     parametro1: String,
-//	   parametro2: Number
-//	   ...
-//     paramentroN : Type
-// })

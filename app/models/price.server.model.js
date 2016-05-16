@@ -1,9 +1,9 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 	
-var PricesSchema = new Schema({
+var PriceSchema = new Schema({
 	valorParMeias : Number,
 	valorSessao : Number				
 });
 
-mongoose.model('Prices', PricesSchema);
+mongoose.model('Price', PriceSchema);
