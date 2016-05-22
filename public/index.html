@@ -14,15 +14,19 @@
 
   <script src="lib/angular-touch/angular-touch.min.js"></script>
   <script src="lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="lib/angular-ui-mask/dist/mask.min.js"></script>
 
   <script src="application.js"></script>
 
   <!--Serviços-->
-  <script src="services/ajax/cadastro.js"></script>
-  <script src="services/ajax/preco.js"></script>
-  <script src="services/ajax/despesa.js"></script>
-  <script src="services/ajax/receita.js"></script>
-  <script src="services/modelo.js"></script> 
+  <script src="services/expenses.client.service.js"></script>
+  <script src="services/incomes.client.service.js"></script>
+  <script src="services/model.client.service.js"></script>
+  <script src="services/prices.client.service.js"></script>
+  <script src="services/registers.client.ajax.service.js"></script>
+  
+  <!--Controllers -->
+  <script src="controllers/registers.client.controller.js"></script>
   
 </head>
 
@@ -39,12 +43,12 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/"><i class="fa fa-gamepad fa-2x"></i> Playground</a></li>
-        <li><a href="#/form_cadastro"><i class="fa fa-user-plus fa-2x"></i> Cadastro</a></li>
-        <li><a href="#/table_clientes"><i class="fa fa-users fa-2x"></i> Clientes</a></li>
+        <li><a href="#/cadastro"><i class="fa fa-user-plus fa-2x"></i> Cadastro</a></li>
+        <li><a href="#/clientes"><i class="fa fa-users fa-2x"></i> Clientes</a></li>
         <!--<li><a href="#/table_historico"><i class="fa fa-history fa-2x"></i> Histórico</a></li>-->
-        <li><a href="#/form_despesas"><i class="fa fa-usd fa-2x"></i> Despesas</a></li>
-        <li><a href="#/table_relatorio"><i class="fa fa-line-chart fa-2x"></i> Relatório</a></li>
-        <li><a href="#/form_precos"><i class="fa fa-money fa-2x"></i> Preços</a></li>
+        <li><a href="#/despesas"><i class="fa fa-usd fa-2x"></i> Despesas</a></li>
+        <li><a href="#/relatorio"><i class="fa fa-line-chart fa-2x"></i> Relatório</a></li>
+        <li><a href="#/precos"><i class="fa fa-money fa-2x"></i> Preços</a></li>
 
 
 

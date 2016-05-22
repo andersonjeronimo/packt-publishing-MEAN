@@ -1,8 +1,10 @@
-angular.module('angularApp').controller('registerController', function ($scope, registerAjaxService) {
+angular.module('angularApp').controller('registerController', function ($scope, registerAjaxService, modelService) {
 
   $scope.cadastros = [];
+  $scope.model = modelService;  
 
   $scope.create = function (cadastro) {
+    cadastro.dataNascimento = createDateObject();
     registerAjaxService.create(cadastro, function (result) {
       window.alert(result);
     });
@@ -31,6 +33,17 @@ angular.module('angularApp').controller('registerController', function ($scope, 
     registerAjaxService._delete(id, function (result) {
       window.alert(result);
     });
+  };
+  
+  function createDateObject() {
+    var dia = Number(angular.copy($scope.model.calendario.dia));
+    var mes = Number(angular.copy($scope.model.calendario.mes));
+    var ano = Number(angular.copy($scope.model.calendario.ano));
+    var data_nascimento = new Date();
+    data_nascimento.setDate(dia);
+    data_nascimento.setMonth(mes - 1);
+    data_nascimento.setFullYear(ano);
+    return data_nascimento;
   };
 
 });
