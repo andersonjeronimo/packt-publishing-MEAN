@@ -3,7 +3,7 @@ var config = require('./config'),
 	morgan = require('morgan'),
 	compress = require('compression'),
 	bodyParser = require('body-parser'),
-	methodOverride = require('method-override'), 
+	methodOverride = require('method-override'),
 	session = require('express-session');
 
 
@@ -16,10 +16,18 @@ module.exports = function () {
 		app.use(compress());
 	}
 
+	app.all('*', function (req, res, next) {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+		res.header('Access-Control-Allow-Headers', 'Content-Type');
+		res.header('Access-Control-Allow-Credentials', 'true');
+		next();
+	});
+
 	app.use(bodyParser.urlencoded({
 		extended: true
 	}));
-	
+
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 
@@ -29,15 +37,17 @@ module.exports = function () {
 		secret: config.sessionSecret
 	}));
 
-	app.set('views', './app/views');
-	app.set('view engine', 'ejs');
+	// app.set('views', './app/views');
+	// app.set('view engine', 'ejs');
 	
 	//configurando rotas
-	require('../app/routes/index.server.routes')(app);
-	require('../app/routes/playsession.server.routes')(app);
-	require('../app/routes/price.server.routes')(app);
-	require('../app/routes/register.server.routes')(app);
-
+	//require('../app/routes/index.server.routes')(app);
+	require('../app/routes/diversions.server.routes')(app);
+	require('../app/routes/prices.server.routes')(app);
+	require('../app/routes/registers.server.routes')(app);
+	require('../app/routes/incomes.server.routes')(app);
+	require('../app/routes/expenses.server.routes')(app);
+	
 	app.use(express.static('./public'));
 
 	return app;
