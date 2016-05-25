@@ -37,7 +37,7 @@ angular.module('angularApp').factory('registerAjaxService', function ($http) {
       });
   };
   function update(cadastro, callback) {
-    $http.put(URL, cadastro).success(
+    $http.put(URL + cadastro._id, cadastro).success(
       function (response) {
         callback(response.data);        
       }).error(function (response) {
@@ -45,8 +45,8 @@ angular.module('angularApp').factory('registerAjaxService', function ($http) {
       });
   };
 
-  function _delete(id, callback) {
-    $http.delete(URL + id).success(
+  function _delete(cadastro, callback) {   
+    $http.delete(URL + cadastro._id).success(
       function (response) {
         callback(response.data);        
       }).error(function (response) {

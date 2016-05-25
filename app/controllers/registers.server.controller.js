@@ -36,7 +36,7 @@ exports.registerByID = function (req, res, next, id) {
 	});
 };
 
-exports.update = function (req, res, next) {
+exports.update = function (req, res, next) {		
 	Register.findByIdAndUpdate(req.register.id, req.body, function (err, register) {
 		if (err) {
 			return next(err);

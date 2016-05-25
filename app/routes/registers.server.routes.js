@@ -7,7 +7,7 @@ module.exports = function (app) {
 
 	app.route('/registers/:registerId')		
 		.get(registers.read)
-		.put(registers.update)
+		.put(registers.update)		
 		.delete(registers.delete);	
 
 	app.param('registerId', registers.registerByID);

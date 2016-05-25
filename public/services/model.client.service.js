@@ -51,11 +51,11 @@ angular.module('angularApp').factory('modelService', function () {
     tab: 0,
     dias: cria_numeros(1, 31, 1),
     meses: cria_numeros(1, 12, 1),
-    anos: cria_numeros(2010, 2016, 1),
+    anos: cria_numeros(2005, 2030, 1),
     horas: cria_numeros(0, 23, 1),
     minutos: cria_numeros(0, 59, 5),
     operadoras: ['CLARO', 'VIVO', 'NEXTEL', 'OI', 'TIM', 'NET', 'OUTRA'],
-    forma_pagamento: ['DEBITO', 'CREDITO', 'DINHEIRO'],
+    forma_pagamento: ['DEBITO', 'CREDITO', 'DINHEIRO', 'OUTRA'],
     calendario: {
       dia: get_data_atual().dia,
       mes: get_data_atual().mes,
@@ -92,19 +92,19 @@ angular.module('angularApp').factory('modelService', function () {
       this.tab = n;
     },
     setDia: function (index, dia) {
-      var dn_crianca = new Date(angular.copy(this.players[index].dn_crianca));
-      dn_crianca.setDate(dia);
-      this.players[index].dn_crianca = dn_crianca;
+      var dataNascimento = new Date(angular.copy(this.players[index].dataNascimento));
+      dataNascimento.setDate(dia);
+      this.players[index].dataNascimento = dataNascimento;
     },
     setMes: function (index, mes) {
-      var dn_crianca = new Date(angular.copy(this.players[index].dn_crianca));
-      dn_crianca.setMonth(mes - 1);//Date.getMonth() retorna 0 a 11. Ao setar com 'setMonth()' diminuir 1    
-      this.players[index].dn_crianca = dn_crianca;
+      var dataNascimento = new Date(angular.copy(this.players[index].dataNascimento));
+      dataNascimento.setMonth(mes - 1);//Date.getMonth() retorna 0 a 11. Ao setar com 'setMonth()' diminuir 1    
+      this.players[index].dataNascimento = dataNascimento;
     },
     setAno: function (index, ano) {
-      var dn_crianca = new Date(angular.copy(this.players[index].dn_crianca));
-      dn_crianca.setFullYear(ano);
-      this.players[index].dn_crianca = dn_crianca;
+      var dataNascimento = new Date(angular.copy(this.players[index].dataNascimento));
+      dataNascimento.setFullYear(ano);
+      this.players[index].dataNascimento = dataNascimento;
     },
     //alterar hora e minuto do histórico atual
     setHoraIni: function (index, hora) {
