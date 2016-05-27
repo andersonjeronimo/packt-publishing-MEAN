@@ -6,7 +6,7 @@
 		<div class="panel-body">
 			<div class="col-md-4">
 				<div class="alert alert-info">
-					<strong>{{model.alert}}</strong>
+					<strong>{{model.alert}}</strong>					
 				</div>				
 			</div>
 
@@ -21,7 +21,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="player in model.players">
+					<tr ng-repeat="diversao in model.diversoes">
 						<td ng-bind="player.nome_crianca"></td>
 						<td>
 							<div ng-show="player.brincando" ng-bind="player.historico[player.historico.length - 1].inicio | date:'HH:mm'"></div>
@@ -36,7 +36,7 @@
 							</div>
 						</td>
 						<td>
-							<div ng-include="'partials/progress_bar.html'"></div>
+							<progress-bar diversao="diversao"></progress-bar>							
 						</td>
 						<td>
 							<div ng-show="player.brincando" ng-bind="player.historico[player.historico.length - 1].fim | date:'HH:mm'"></div>

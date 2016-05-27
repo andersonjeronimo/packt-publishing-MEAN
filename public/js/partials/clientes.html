@@ -42,15 +42,15 @@
 						<td>
 							<div ng-hide="model.checked == $index">{{cadastro.dataNascimento | date:'dd/MM/yyyy'}}</div>
 							<div class="btn-group" ng-show="model.checked == $index">
-								<select class="btn btn-primary" ng-change="model.setDia($index, model.calendario.dia)" ng-model="model.calendario.dia" ng-options="dia for dia in model.dias"
+								<select class="btn btn-primary" ng-model="model.calendario.dia" ng-options="dia for dia in model.dias"
 								ng-required="true">
 									<option value="" disabled selected>Dia</option>
 								</select>
-								<select class="btn btn-primary" ng-change="model.setMes($index, model.calendario.mes)" ng-model="model.calendario.mes" ng-options="mes for mes in model.meses"
+								<select class="btn btn-primary" ng-model="model.calendario.mes" ng-options="mes for mes in model.meses"
 								ng-required="true">
 									<option value="" disabled selected>Mês</option>
 								</select>
-								<select class="btn btn-primary" ng-change="model.setAno($index, model.calendario.ano)" ng-model="model.calendario.ano" ng-options="ano for ano in model.anos"
+								<select class="btn btn-primary" ng-model="model.calendario.ano" ng-options="ano for ano in model.anos"
 								ng-required="true">
 									<option value="" disabled selected>Ano</option>
 								</select>

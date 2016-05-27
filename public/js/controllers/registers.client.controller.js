@@ -5,7 +5,7 @@ angular.module('angularApp').controller('registerController', function ($scope, 
   
 
   $scope.create = function (cadastro) {
-    cadastro.dataNascimento = createDateObject();
+    cadastro.dataNascimento = $scope.model.data_selecionada();
     registerAjaxService.create(cadastro, function (result) {
       delete $scope.cadastro;
       $scope.list();
@@ -26,7 +26,7 @@ angular.module('angularApp').controller('registerController', function ($scope, 
   };
 
   $scope.update = function (cadastro) {
-    cadastro.dataNascimento = createDateObject();
+    cadastro.dataNascimento = $scope.model.data_selecionada();
     registerAjaxService.update(cadastro, function (result) {
       console.log(result);   
       $scope.list();   
@@ -38,18 +38,7 @@ angular.module('angularApp').controller('registerController', function ($scope, 
       console.log(result);
       $scope.list();
     });
-  };
-  
-  function createDateObject() {
-    var dia = Number(angular.copy($scope.model.calendario.dia));
-    var mes = Number(angular.copy($scope.model.calendario.mes));
-    var ano = Number(angular.copy($scope.model.calendario.ano));
-    var dataNascimento = new Date();
-    dataNascimento.setDate(dia);
-    dataNascimento.setMonth(mes - 1);
-    dataNascimento.setFullYear(ano);
-    return dataNascimento;
-  };
+  }; 
   
   $scope.list();
 
