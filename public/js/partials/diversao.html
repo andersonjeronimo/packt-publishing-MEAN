@@ -6,8 +6,8 @@
 		<div class="panel-body">
 			<div class="col-md-4">
 				<div class="alert alert-info">
-					<strong>{{model.alert}}</strong>					
-				</div>				
+					<strong>{{model.alert}}</strong>
+				</div>
 			</div>
 
 			<table class="table table-hover table-striped table-condensed">
@@ -22,10 +22,10 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="diversao in model.diversoes">
-						<td ng-bind="player.nome_crianca"></td>
+						<td ng-bind="diversao.nome_crianca"></td>
 						<td>
-							<div ng-show="player.brincando" ng-bind="player.historico[player.historico.length - 1].inicio | date:'HH:mm'"></div>
-							<div class="btn-group" ng-hide="player.brincando">
+							<div ng-show="diversao.iniciada" ng-bind="diversao.inicio | date:'HH:mm'"></div>
+							<div class="btn-group" ng-hide="diversao.iniciada">
 								<select class="btn btn-primary dropdown-toggle" ng-model="model.inicio.hora" ng-options="hora for hora in model.horas" ng-required="true">
 									<!--<option value="" disabled selected>Hora</option>-->
 								</select>
@@ -36,11 +36,11 @@
 							</div>
 						</td>
 						<td>
-							<progress-bar diversao="diversao"></progress-bar>							
+							<progress-bar diversao="diversao"></progress-bar>
 						</td>
 						<td>
-							<div ng-show="player.brincando" ng-bind="player.historico[player.historico.length - 1].fim | date:'HH:mm'"></div>
-							<div class="btn-group" ng-hide="player.brincando">
+							<div ng-show="diversao.iniciada" ng-bind="diversao.fim | date:'HH:mm'"></div>
+							<div class="btn-group" ng-hide="diversao.iniciada">
 								<select class="btn btn-primary dropdown-toggle" ng-model="model.fim.hora" ng-options="hora for hora in model.horas" ng-required="true">
 									<!--<option value="" disabled selected>Hora</option>-->
 								</select>
@@ -51,39 +51,28 @@
 							</div>
 						</td>
 						<td>
-							<button class="btn btn-primary" ng-click="iniciaBrincadeira(player)" 
-							ng-show="player.standing_by == true && player.brincando == false">
-								<i class="fa fa-play" ng-mouseover="model.alert = 'Inicia brincadeira!'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
-							</button>
-							
-							<button class="btn btn-primary" ng-click="goHome(player)" 
-							ng-show="player.standing_by == true && player.brincando == false">
-								<i class="fa fa-sign-out" ng-mouseover="model.alert = 'Finaliza (não haverá combrança)'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button class="btn btn-primary" ng-click="inicia(diversao)" ng-show="diversao.iniciada == false">
+								<i class="fa fa-play" ng-mouseover="model.alert = 'Inicia brincadeira!'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
-							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" 
-							ng-show="player.brincando == true && player.historico[player.historico.length - 1].pago == false">
-								<i class="fa fa-usd" ng-mouseover="model.alert = 'Efetua pagamento'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button class="btn btn-primary" ng-click="" ng-show="diversao.iniciada == false">
+								<i class="fa fa-sign-out" ng-mouseover="model.alert = 'Finaliza (não haverá combrança)'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
-							<button class="btn btn-success" ng-show="player.brincando == true" ng-click="adicionaTempo(player); calculaValor(player)">
-								<i class="fa fa-hourglass"></i><i class="fa fa-plus" ng-mouseover="model.alert = 'Adiciona tempo'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-show="diversao.iniciada == true && diversao.paga == false">
+								<i class="fa fa-usd" ng-mouseover="model.alert = 'Efetua pagamento'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
-							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" 
-							ng-show="player.brincando == true && player.historico[player.historico.length - 1].pago == true">
-								<i class="fa fa-usd"></i><i class="fa fa-plus" ng-mouseover="model.alert = 'Adiciona dinheiro'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button class="btn btn-success" ng-show="diversao.iniciada == true" ng-click="adicionaTempo(diversao); calculaValor(diversao)">
+								<i class="fa fa-hourglass"></i><i class="fa fa-plus" ng-mouseover="model.alert = 'Adiciona tempo'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
-							<button class="btn btn-danger" ng-click="finalizaBrincadeira(player)" 
-							ng-show="player.brincando == true && player.historico[player.historico.length - 1].pago == true">
-								<i class="fa fa-floppy-o"></i><i class="fa fa-check" ng-mouseover="model.alert = 'Salva e termina brincadeira'" 
-							ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-show="diversao.iniciada == true && diversao.paga == true">
+								<i class="fa fa-usd"></i><i class="fa fa-plus" ng-mouseover="model.alert = 'Adiciona dinheiro'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							</button>
+
+							<button class="btn btn-danger" ng-click="finalizaBrincadeira(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
+								<i class="fa fa-floppy-o"></i><i class="fa fa-check" ng-mouseover="model.alert = 'Salva e termina brincadeira'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
 							<div uib-collapse="isCollapsed">

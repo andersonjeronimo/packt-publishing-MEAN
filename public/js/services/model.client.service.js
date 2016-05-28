@@ -21,12 +21,12 @@ angular.module('angularApp').factory('modelService', function () {
     app_name: 'Diversão MaisKidMais',
     alert: 'Dicas e alertas aqui!',
     inicio: {
-      hora: 10,
-      minuto: 45
+      hora: new Date().getUTCHours(),
+      minuto: new Date().getUTCMinutes()      
     },
     fim: {
-      hora: 11,
-      minuto: 45
+      hora: new Date().getUTCHours() + 1,
+      minuto: new Date().getUTCMinutes()
     },
     filtro: '',
     ordem: '',

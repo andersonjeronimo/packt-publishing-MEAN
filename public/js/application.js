@@ -138,19 +138,19 @@ angular.module('angularApp').controller('mainController', function ($scope, $htt
   //   }
   // };
 
-  function hora_valida() {
-    if ($scope.model.fim.hora > $scope.model.inicio.hora) {
-      return true;
-    } else if ($scope.model.fim.hora == $scope.model.inicio.hora) {
-      if ($scope.model.fim.minuto > $scope.model.inicio.minuto) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
+  // function hora_valida() {
+  //   if ($scope.model.fim.hora > $scope.model.inicio.hora) {
+  //     return true;
+  //   } else if ($scope.model.fim.hora == $scope.model.inicio.hora) {
+  //     if ($scope.model.fim.minuto > $scope.model.inicio.minuto) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
 //   $scope.iniciaBrincadeira = function (cadastro) {
 //     if (cadastro.brincando == false && cadastro.standing_by == true) {

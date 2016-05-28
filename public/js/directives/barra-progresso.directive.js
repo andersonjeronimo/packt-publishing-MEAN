@@ -11,7 +11,7 @@ angular.module('angularApp').directive('progressBar', function ($timeout, $inter
       $scope.progresso = 0;
       $scope.tempo_restante = 0;
 
-      $scope.updateProgressBar = function () {
+      var _updateProgressBar = function () {
         if ($scope.diversao.iniciada) {
           var inicio = Date.parse($scope.diversao.inicio);
           var fim = Date.parse($scope.diversao.fim);
@@ -40,8 +40,8 @@ angular.module('angularApp').directive('progressBar', function ($timeout, $inter
         };
       };
 
-      $timeout($scope.updateProgressBar, 0);
-      $interval($scope.updateProgressBar, 5000);
+      $timeout(_updateProgressBar, 0);
+      $interval(_updateProgressBar, 5000);
 
     }
   }
