@@ -25,7 +25,7 @@ exports.read = function (req, res) {
 	res.json(req.expense);
 };
 
-exports.expenseByID = function (req, res, id, next) {
+exports.expenseByID = function (req, res, next, id) {
 	Expense.findOne({ _id: id }, function (err, expense) {
 		if (err) {
 			return next(err);

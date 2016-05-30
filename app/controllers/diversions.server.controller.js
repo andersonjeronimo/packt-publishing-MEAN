@@ -25,7 +25,7 @@ exports.read = function (req, res) {
 	res.json(req.diversion);
 };
 
-exports.diversionByID = function (req, res, id, next) {
+exports.diversionByID = function (req, res, next, id) {
 	Diversion.findOne({ _id: id }, function (err, diversion) {
 		if (err) {
 			return next(err);

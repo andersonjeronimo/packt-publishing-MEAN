@@ -36,8 +36,7 @@ angular.module('angularApp').factory('modelService', function () {
     anos: cria_numeros(2005, 2030, 1),
     horas: cria_numeros(0, 23, 1),
     minutos: cria_numeros(0, 59, 5),
-    operadoras: ['CLARO', 'VIVO', 'NEXTEL', 'OI', 'TIM', 'NET', 'OUTRA'],
-    forma_pagamento: ['DEBITO', 'CREDITO', 'DINHEIRO', 'OUTRA'],
+    operadoras: ['CLARO', 'VIVO', 'NEXTEL', 'OI', 'TIM', 'NET', 'OUTRA'],    
     
     calendario: {
       dia: get_data_atual().dia,

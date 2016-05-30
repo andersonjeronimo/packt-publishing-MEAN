@@ -21,8 +21,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="diversao in model.diversoes">
-						<td ng-bind="diversao.nome_crianca"></td>
+					<tr ng-repeat="diversao in diversoes">
+						<td ng-bind="diversao.nomeCrianca"></td>
 						<td>
 							<div ng-show="diversao.iniciada" ng-bind="diversao.inicio | date:'HH:mm'"></div>
 							<div class="btn-group" ng-hide="diversao.iniciada">
@@ -51,12 +51,13 @@
 							</div>
 						</td>
 						<td>
-							<button class="btn btn-primary" ng-click="inicia(diversao)" ng-show="diversao.iniciada == false">
+							<button class="btn btn-primary" ng-click="iniciaDiversao(diversao);" ng-show="diversao.iniciada == false">
 								<i class="fa fa-play" ng-mouseover="model.alert = 'Inicia brincadeira!'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
 							</button>
 
-							<button class="btn btn-primary" ng-click="" ng-show="diversao.iniciada == false">
-								<i class="fa fa-sign-out" ng-mouseover="model.alert = 'Finaliza (não haverá combrança)'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+							<button class="btn btn-primary" ng-click="cancelaDiversao(diversao);" ng-show="diversao.paga == false">
+								<i class="fa fa-trash-o" aria-hidden="true" ng-mouseover="model.alert = 'Finaliza (não haverá combrança)'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>
+								<!--<i class="fa fa-sign-out" ng-mouseover="model.alert = 'Finaliza (não haverá combrança)'" ng-mouseleave="model.alert = 'Dicas e alertas aqui!'"></i>-->
 							</button>
 
 							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-show="diversao.iniciada == true && diversao.paga == false">
@@ -77,7 +78,7 @@
 
 							<div uib-collapse="isCollapsed">
 								<div class="well well-lg">
-									<pagto-directive cadastro="player"></pagto-directive>
+									<pagto-directive diversao="diversao"></pagto-directive>
 								</div>
 							</div>
 						</td>

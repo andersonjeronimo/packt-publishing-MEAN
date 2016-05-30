@@ -25,7 +25,7 @@ exports.read = function (req, res) {
 	res.json(req.price);
 };
 
-exports.priceByID = function (req, res, id, next) {
+exports.priceByID = function (req, res, next, id) {
 	Price.findOne({ _id: id }, function (err, price) {
 		if (err) {
 			return next(err);

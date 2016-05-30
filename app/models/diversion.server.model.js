@@ -7,11 +7,15 @@ var DiversionSchema = new Schema({
 	iniciada: Boolean,
 	finalizada: Boolean,
 	paga: Boolean,
-	formaPagto: String,
-	valor: Number,
+	formaDePagamento: String,
+	adicional: Boolean,
+	valorPago: Number,
+	valorFinal: Number,
+	desconto: Number,
+	troco: Number,
 	registerID: {
-		type:Schema.ObjectId, 
-		ref:'Register'
+		type: Schema.ObjectId,
+		ref: 'Register'
 	}	
 	//referência ao registro de determinado Cadastro (Register)
 	

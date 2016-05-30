@@ -5,23 +5,23 @@
 		</div>
 		<div class="panel-body">
 			<table class="table table-hover table-striped table-condensed" style="overflow-y: auto; height: 500px; display: block;" role="table">
+				<div class="col-md-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+						<input type="text" class="form-control" ng-model="model.filtro" ng-model-options="{updateOn:'default blur', debounce:{'default':1000, 'blur':0}}"
+						placeholder="Busca" />
+					</div>
+				</div>
 				<thead>
 					<tr>
-						<th class="col-md-2">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-								<input type="text" class="form-control" ng-model="model.filtro" ng-model-options="{updateOn:'default blur', debounce:{'default':1000, 'blur':0}}"
-								placeholder="Busca" />
-							</div>
-						</th>
+						<th class="col-md-1">Menu</th>
 						<th class="col-md-2"><a href="" ng-click="model.ordena('nomeCrianca')">Criança</a></th>
-						<th class="col-md-1"><a href="" ng-click="model.ordena('dataNasciment')">Nascimento</a></th>
+						<th class="col-md-2"><a href="" ng-click="model.ordena('dataNasciment')">Nascimento</a></th>
 						<th class="col-md-2"><a href="" ng-click="model.ordena('nomeResponsavel')">Responsável</a></th>
-						<th class="col-md-1"><a href="" ng-click="model.ordena('email')">Email</a></th>
 						<th class="col-md-1"><a href="" ng-click="model.ordena('telefone')">Telefone</a></th>
 						<th class="col-md-1"><a href="" ng-click="model.ordena('operadora')">Operadora</a></th>
-						<th class="col-md-1">Observações</th>
-						<th class="col-md-1"></th>
+						<th class="col-md-2">Observações</th>
+						<th class="col-md-1">Excluir</th>
 					</tr>
 				</thead>
 
@@ -29,9 +29,10 @@
 					<tr ng-repeat="cadastro in cadastros | filter:model.filtro | orderBy:model.ordem">
 						<td>
 							<div class="btn-group" role="group">
-								<button class="btn btn-primary" ng-disabled="model.checked == $index" ng-click="model.change($index)">Atualizar</button>
-								<button class="btn btn-success" ng-disabled="!(model.checked == $index)" ng-click="update(cadastro); model.change($index)">Salvar</button>								
-								<!--<button class="btn btn-info" ng-disabled="model.checked == $index" ng-click="modals.open_modal_historico(cadastro)">Histórico</button>-->
+								<a href="" ng-click="adicionaDiversao(cadastro);" ng-hide="cadastro.brincando == true || model.checked == $index"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" ng-show="cadastro.brincando == true"><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" ng-click="model.change($index);" ng-hide="model.checked == $index"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a>
+								<a href="" ng-click="atualizaCadastro(cadastro); model.change($index);" ng-show="model.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
 							</div>
 						</td>
 
@@ -41,17 +42,14 @@
 						</td>
 						<td>
 							<div ng-hide="model.checked == $index">{{cadastro.dataNascimento | date:'dd/MM/yyyy'}}</div>
-							<div class="btn-group" ng-show="model.checked == $index">
-								<select class="btn btn-primary" ng-model="model.calendario.dia" ng-options="dia for dia in model.dias"
-								ng-required="true">
+							<div class="btn-group" ng-show="model.checked == $index" role="group">
+								<select class="btn btn-primary" ng-model="model.calendario.dia" ng-options="dia for dia in model.dias" ng-required="true">
 									<option value="" disabled selected>Dia</option>
 								</select>
-								<select class="btn btn-primary" ng-model="model.calendario.mes" ng-options="mes for mes in model.meses"
-								ng-required="true">
+								<select class="btn btn-primary" ng-model="model.calendario.mes" ng-options="mes for mes in model.meses" ng-required="true">
 									<option value="" disabled selected>Mês</option>
 								</select>
-								<select class="btn btn-primary" ng-model="model.calendario.ano" ng-options="ano for ano in model.anos"
-								ng-required="true">
+								<select class="btn btn-primary" ng-model="model.calendario.ano" ng-options="ano for ano in model.anos" ng-required="true">
 									<option value="" disabled selected>Ano</option>
 								</select>
 							</div>
@@ -61,12 +59,8 @@
 							<input type="text" ng-model="cadastro.nomeResponsavel" ng-show="model.checked == $index">
 						</td>
 						<td>
-							<div ng-bind="cadastro.email" ng-hide="model.checked == $index"></div>
-							<input type="text" ng-model="cadastro.email" ng-show="model.checked == $index">
-						</td>
-						<td>
 							<div ng-bind="cadastro.telefone" ng-hide="model.checked == $index"></div>
-							<input type="text" ng-model="cadastro.telefone" ng-show="model.checked == $index">
+							<input type="text" ng-model="cadastro.telefone" ui-mask="(99)9999-9999" ng-show="model.checked == $index">
 						</td>
 						<td>
 							<div ng-bind="cadastro.operadora" ng-hide="model.checked == $index"></div>
@@ -80,7 +74,14 @@
 							<textarea cols="30" rows="3" ng-model="cadastro.observacoes" ng-show="model.checked == $index"></textarea>
 						</td>
 						<td>
-							<button class="btn btn-danger" ng-click="delete(cadastro)">Excluir</button>
+							<a href="" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-caret-square-o-down fa-2x" aria-hidden="true"></i></a>
+							<div uib-collapse="isCollapsed">
+								<div class="well well-lg">
+									<div class="btn-group" role="group">
+										<a href="" ng-click="removeCadastro(cadastro);" ng-hide="model.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
 						</td>
 					</tr>
 				</tbody>

@@ -7,8 +7,8 @@ angular.module('angularApp').config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'js/partials/diversao.html',
-      controller: 'diversionController'
-    })
+      controller: 'registerController'
+    })    
     .when('/cadastro', {
       templateUrl: 'js/partials/cadastro.html',
       controller: 'registerController'
