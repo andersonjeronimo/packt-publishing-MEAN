@@ -25,9 +25,10 @@ angular.module('angularApp').controller('registerController', function ($scope, 
   $scope.adicionaDiversao = function (cadastro) {
     if (cadastro.brincando) {
       window.alert('Sessão já iniciada.');
-    } else {
+    } else {         
       var diversao = {
-        inicio: new Date(),
+        inicio: new Date,
+        fim : new Date,
         iniciada: false,
         finalizada: false,
         paga: false,
@@ -38,7 +39,7 @@ angular.module('angularApp').controller('registerController', function ($scope, 
         desconto: 0,
         troco: 0,
         registerID: cadastro
-      };
+      };    
 
       ajaxAPIService.createEntity(URL_DIV, diversao).success(function (data) {
         $scope.diversoes.push(data);
@@ -117,7 +118,7 @@ angular.module('angularApp').controller('registerController', function ($scope, 
         });
       });
     } else {
-      window.alert("Sessão já iniciada.");
+      window.alert("Sessão já foi paga.");
     }
   };
   

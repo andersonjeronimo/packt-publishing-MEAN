@@ -25,7 +25,7 @@ angular.module('angularApp').factory('modelService', function () {
       minuto: new Date().getUTCMinutes()      
     },
     fim: {
-      hora: new Date().getUTCHours() + 1,
+      hora: new Date().getUTCHours(),
       minuto: new Date().getUTCMinutes()
     },
     filtro: '',

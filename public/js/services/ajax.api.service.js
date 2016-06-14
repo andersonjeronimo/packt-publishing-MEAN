@@ -7,6 +7,9 @@ angular.module('angularApp').factory('ajaxAPIService', function ($http) {
     updateEntity: _updateEntity,
     deleteEntity: _deleteEntity
   }
+  
+  //retorna as promessas, o SUCCESS e ERROR devem ser tratados pelo controller.
+  //desta forma, a API AJAX não trabalha com os callbacks
 
   function _createEntity(URL, entity) {
     return $http.post(URL, entity);
