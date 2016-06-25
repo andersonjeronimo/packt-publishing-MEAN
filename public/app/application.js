@@ -3,35 +3,6 @@ angular.module('angularApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.mask']
 //   angular.bootstrap(document, ['angularApp']);
 // });
 
-angular.module('angularApp').config(function ($routeProvider) {
-  $routeProvider
-    .when('/', {
-      templateUrl: 'js/partials/diversao.html',
-      controller: 'registerController'
-    })    
-    .when('/cadastro', {
-      templateUrl: 'js/partials/cadastro.html',
-      controller: 'registerController'
-    })
-    .when('/precos', {
-      templateUrl: 'js/partials/precos.html',
-      controller: 'mainController'
-    })
-    .when('/clientes', {
-      templateUrl: 'js/partials/clientes.html',
-      controller: 'registerController'
-    })
-    .when('/despesas', {
-      templateUrl: 'js/partials/despesas.html',
-      controller: 'mainController'
-    })
-    .when('/relatorio', {
-      templateUrl: 'js/partials/relatorio.html',
-      controller: 'mainController'
-    });
-});
-
-
 angular.module('angularApp').controller('mainController', function ($scope, $http, $timeout, $interval, $routeParams,
   modelService, $location) {
 
@@ -50,7 +21,7 @@ angular.module('angularApp').controller('mainController', function ($scope, $htt
       $scope.partial = true;
     }
   }
-
+  
   //listaCadastros();
   // getConfiguracao();
   // listaDespesas();

@@ -1,4 +1,4 @@
-angular.module('angularApp').controller('registerController', function ($scope, ajaxAPIService, modelService) {
+angular.module('angularApp').controller('registerController', function ($scope, ajaxAPIService, modelService, diversionModelService) {
 
   $scope.cadastros = [];
   $scope.diversoes = [];
@@ -25,21 +25,8 @@ angular.module('angularApp').controller('registerController', function ($scope, 
   $scope.adicionaDiversao = function (cadastro) {
     if (cadastro.brincando) {
       window.alert('Sessão já iniciada.');
-    } else {         
-      var diversao = {
-        inicio: new Date,
-        fim : new Date,
-        iniciada: false,
-        finalizada: false,
-        paga: false,
-        formaPagamento: '',
-        adicional: false,
-        valorPago: 0,
-        valorFinal: 0,
-        desconto: 0,
-        troco: 0,
-        registerID: cadastro
-      };    
+    } else {
+      var diversao = new diversionModelService.Diversao(cadastro);       
 
       ajaxAPIService.createEntity(URL_DIV, diversao).success(function (data) {
         $scope.diversoes.push(data);

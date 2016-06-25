@@ -22,7 +22,7 @@ angular.module('angularApp').factory('modelService', function () {
     alert: 'Dicas e alertas aqui!',
     inicio: {
       hora: new Date().getUTCHours(),
-      minuto: new Date().getUTCMinutes()      
+      minuto: new Date().getUTCMinutes()
     },
     fim: {
       hora: new Date().getUTCHours(),
@@ -30,21 +30,21 @@ angular.module('angularApp').factory('modelService', function () {
     },
     filtro: '',
     ordem: '',
-    checked: -1,    
+    checked: -1,
     dias: cria_numeros(1, 31, 1),
     meses: cria_numeros(1, 12, 1),
     anos: cria_numeros(2005, 2030, 1),
     horas: cria_numeros(0, 23, 1),
     minutos: cria_numeros(0, 59, 5),
-    operadoras: ['CLARO', 'VIVO', 'NEXTEL', 'OI', 'TIM', 'NET', 'OUTRA'],    
-    
+    operadoras: ['CLARO', 'VIVO', 'NEXTEL', 'OI', 'TIM', 'NET', 'OUTRA'],
+
     calendario: {
       dia: get_data_atual().dia,
       mes: get_data_atual().mes,
       ano: get_data_atual().ano
     },
 
-    data_selecionada: function (params) {      
+    data_selecionada: function (params) {
       var dataNascimento = new Date();
       dataNascimento.setDate(this.calendario.dia);
       dataNascimento.setMonth(this.calendario.mes - 1);
@@ -62,7 +62,7 @@ angular.module('angularApp').factory('modelService', function () {
         minuto: data.getUTCMinutes()
       };
     })(),
-       
+
     ordena: function (criterio) {
       this.ordem = criterio;
     },
@@ -72,6 +72,6 @@ angular.module('angularApp').factory('modelService', function () {
       } else {
         this.checked = index;
       }
-    }    
+    }
   }
 });
