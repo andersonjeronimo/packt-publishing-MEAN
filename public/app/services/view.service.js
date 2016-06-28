@@ -1,6 +1,7 @@
-angular.module('angularApp').factory('utilsService', function () {  
+angular.module('angularApp').factory('view', function () {  
   return {
-    app_name: 'Diversão MaisKidMais',        
+    app_name: 'Diversão MaisKidMais',
+    operadoras : ['CLARO', 'OI', 'VIVO', 'TIM', 'NEXTEL', 'NET', 'OUTRA'],        
     filtro: '',
     ordem: '',
     checked: -1,       

@@ -1,4 +1,4 @@
-angular.module('angularApp').factory('ajaxAPIService', function ($http) { 
+angular.module('angularApp').factory('ajax', function ($http) { 
 
   return {
     createEntity: _createEntity,
@@ -8,8 +8,8 @@ angular.module('angularApp').factory('ajaxAPIService', function ($http) {
     deleteEntity: _deleteEntity
   }
   
-  //retorna as promessas, o SUCCESS e ERROR devem ser tratados pelo controller.
-  //desta forma, a API AJAX não trabalha com os callbacks
+  //Retorna PROMISE: o SUCCESS ou ERROR deve ser tratado pela função que fez a chamada assíncrona.
+  //Ou seja, a API AJAX não trabalha com funções de CALLBACK 
 
   function _createEntity(URL, entity) {
     return $http.post(URL, entity);

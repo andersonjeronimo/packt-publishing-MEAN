@@ -42,11 +42,11 @@ module.exports = function () {
 	
 	//configurando rotas
 	//require('../app/routes/index.server.routes')(app);
-	require('../app/routes/diversions.server.routes')(app);
-	require('../app/routes/prices.server.routes')(app);
-	require('../app/routes/registers.server.routes')(app);
-	require('../app/routes/incomes.server.routes')(app);
-	require('../app/routes/expenses.server.routes')(app);
+	require('../app/routes/diversoes.server.routes')(app);
+	require('../app/routes/precos.server.routes')(app);
+	require('../app/routes/cadastros.server.routes')(app);
+	require('../app/routes/receitas.server.routes')(app);
+	require('../app/routes/despesas.server.routes')(app);
 	
 	app.use(express.static('./public'));
 

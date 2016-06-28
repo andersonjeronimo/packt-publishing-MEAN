@@ -2,11 +2,11 @@ angular.module('angularApp').config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'app/views/diversao.html',
-      controller: 'registerController'
+      controller: 'diversoesController'
     })    
-    .when('/cadastro', {
+    .when('/cadastros', {
       templateUrl: 'app/views/cadastro.html',
-      controller: 'registerController'
+      controller: 'cadastrosController'
     })
     .when('/precos', {
       templateUrl: 'app/views/precos.html',
@@ -14,13 +14,13 @@ angular.module('angularApp').config(function ($routeProvider) {
     })
     .when('/clientes', {
       templateUrl: 'app/views/clientes.html',
-      controller: 'registerController'
+      controller: 'cadastrosController'
     })
     .when('/despesas', {
       templateUrl: 'app/views/despesas.html',
       controller: 'mainController'
     })
-    .when('/relatorio', {
+    .when('/relatorios', {
       templateUrl: 'app/views/relatorio.html',
       controller: 'mainController'
     });

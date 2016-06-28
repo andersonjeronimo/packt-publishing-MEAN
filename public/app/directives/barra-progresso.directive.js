@@ -1,4 +1,4 @@
-angular.module('angularApp').directive('progressBar', function ($timeout, $interval) {
+angular.module('angularApp').directive('barraProgresso', function ($timeout, $interval) {
   return {
     restrict: 'EA',
     replace: false,

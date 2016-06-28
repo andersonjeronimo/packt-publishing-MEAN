@@ -24,7 +24,7 @@
 							</div>
 						</td>
 						<td>
-							<progress-bar diversao="diversao"></progress-bar>
+							<barra-progresso diversao="diversao"></barra-progresso>
 						</td>
 						<td>
 							<div ng-show="diversao.iniciada" ng-bind="diversao.fim | date:'HH:mm'"></div>
@@ -38,7 +38,7 @@
 							</button>
 
 							<button class="btn btn-primary" ng-click="cancelaDiversao(diversao);" ng-show="diversao.paga == false">
-								<i class="fa fa-trash-o" aria-hidden="true"></i>								
+								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</button>
 
 							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-show="diversao.iniciada == true && diversao.paga == false">
@@ -59,7 +59,7 @@
 
 							<div uib-collapse="isCollapsed">
 								<div class="well well-lg">
-									<pagto-directive diversao="diversao"></pagto-directive>
+									<pagamento diversao="diversao"></pagamento>
 								</div>
 							</div>
 						</td>

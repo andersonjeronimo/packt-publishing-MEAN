@@ -4,9 +4,9 @@ angular.module('angularApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.mask']
 // });
 
 angular.module('angularApp').controller('mainController', function ($scope, $http, $timeout, $interval, $routeParams,
-  utilsService, $location) {
+  view, $location) {
     
-  $scope.utils = utilsService;    
+  $scope.view = view;    
 
   $scope.pageClass = 'default-class';
 

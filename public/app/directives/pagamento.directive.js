@@ -1,4 +1,4 @@
-angular.module('angularApp').directive('pagtoDirective', function () {
+angular.module('angularApp').directive('pagamento', function () {
   return {
     restrict: 'E',
     replace: 'true',

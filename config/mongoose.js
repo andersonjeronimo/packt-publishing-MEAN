@@ -4,11 +4,11 @@ var config = require('./config'),
 module.exports = function () {
 	var db = mongoose.connect(config.db);
 	
-	require('../app/models/diversion.server.model');
-	require('../app/models/price.server.model');
-	require('../app/models/register.server.model');	
-	require('../app/models/income.server.model');
-	require('../app/models/expense.server.model');
+	require('../app/models/diversao.server.model');
+	require('../app/models/preco.server.model');
+	require('../app/models/cadastro.server.model');	
+	require('../app/models/receita.server.model');
+	require('../app/models/despesa.server.model');
 	
 	return db;		
 }; 

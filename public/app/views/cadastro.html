@@ -15,17 +15,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="">Data de Nascimento</label>
 					<div class="col-sm-10">
-						<div class="input-group">
-							<select class="btn btn-primary dropdown-toggle" ng-model="model.calendario.dia" ng-options="dia for dia in model.dias" ng-required="true">
-								<option value="" disabled selected>Dia</option>
-							</select>
-							<select class="btn btn-primary dropdown-toggle" ng-model="model.calendario.mes" ng-options="mes for mes in model.meses" ng-required="true">
-								<option value="" disabled selected>Mês</option>
-							</select>
-							<select class="btn btn-primary dropdown-toggle" ng-model="model.calendario.ano" ng-options="ano for ano in model.anos" ng-required="true">
-								<option value="" disabled selected>Ano</option>
-							</select>
-						</div>
+						<input type="text" class="form-control" ng-model="cadastro.dataNascimento" ui-mask="99/99/9999">
 					</div>
 				</div>
 
@@ -34,16 +24,7 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control" ng-model="cadastro.nomeResponsavel" ng-required="true" placeholder="Nome do responsável">
 					</div>
-				</div>
-				<!--<div class="form-group">
-					<label class="control-label col-sm-2" for="">Email</label>
-					<div class="col-sm-10">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input type="email" class="form-control" ng-model="cadastro.email" placeholder="Email : meuemail@dominio.com[.br]" />
-						</div>
-					</div>
-				</div>-->
+				</div>				
 
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="">Telefone</label>
@@ -58,9 +39,9 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="">Operadora</label>
 					<div class="col-sm-10">
-						<select class="btn btn-primary dropdown-toggle" ng-model="cadastro.operadora" ng-options="operadora for operadora in model.operadoras"
+						<select class="btn btn-primary dropdown-toggle" ng-model="cadastro.operadora" ng-options="operadora for operadora in view.operadoras"
 						ng-required="true">
-							<option value="" disabled selected>Operadora</option>
+							<option value="" disabled selected>Selecione</option>
 						</select>
 					</div>
 				</div>
@@ -71,15 +52,7 @@
 						<textarea ng-model="cadastro.observacoes" class="form-control" rows="5" placeholder="Observações..."></textarea>
 					</div>
 				</div>
-
-				<!--<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<label>
-							<input type="checkbox" ng-model="cadastro.standing_by"> Brincar Agora!</input>
-						</label>
-					</div>
-				</div>-->
-
+								
 				<div class="form-group">
 					<!--ng-disabled="form_principal.$invalid || form_principal.$pristine"-->
 					<div class="col-sm-offset-2 col-sm-10">
