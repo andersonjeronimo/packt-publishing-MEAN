@@ -1,4 +1,4 @@
-angular.module('angularApp').factory('view', function () {  
+angular.module('angularApp').factory('view', function ($location) {  
   return {
     app_name: 'Diversão MaisKidMais',
     operadoras : ['CLARO', 'OI', 'VIVO', 'TIM', 'NEXTEL', 'NET', 'OUTRA'],        
@@ -14,6 +14,7 @@ angular.module('angularApp').factory('view', function () {
       } else {
         this.checked = index;
       }
-    }
+    },
+    go_home : $location.path('/')    
   }
 });

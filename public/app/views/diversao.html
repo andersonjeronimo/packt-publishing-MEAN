@@ -33,11 +33,11 @@
 							</div>
 						</td>
 						<td>
-							<button class="btn btn-primary" ng-click="iniciaDiversao(diversao);" ng-show="diversao.iniciada == false">
+							<button class="btn btn-primary" ng-click="model.iniciaDiversao(diversao);" ng-show="diversao.iniciada == false">
 								<i class="fa fa-play"></i>
 							</button>
 
-							<button class="btn btn-primary" ng-click="cancelaDiversao(diversao);" ng-show="diversao.paga == false">
+							<button class="btn btn-primary" ng-click="model.cancelaDiversao(diversao);" ng-show="diversao.paga == false">
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</button>
 
@@ -45,7 +45,7 @@
 								<i class="fa fa-usd"></i>
 							</button>
 
-							<button class="btn btn-success" ng-show="diversao.iniciada == true" ng-click="adicionaTempo(diversao); calculaValor(diversao)">
+							<button class="btn btn-success" ng-show="diversao.iniciada == true" ng-click="model.adicionaTempo(diversao); model.calculaValor(diversao)">
 								<i class="fa fa-hourglass"></i><i class="fa fa-plus"></i>
 							</button>
 
@@ -53,7 +53,7 @@
 								<i class="fa fa-usd"></i><i class="fa fa-plus"></i>
 							</button>
 
-							<button class="btn btn-danger" ng-click="finalizaBrincadeira(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
+							<button class="btn btn-danger" ng-click="model.finalizaBrincadeira(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
 								<i class="fa fa-floppy-o"></i><i class="fa fa-check"></i>
 							</button>
 

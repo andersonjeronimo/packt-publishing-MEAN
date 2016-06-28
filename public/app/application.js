@@ -3,8 +3,7 @@ angular.module('angularApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.mask']
 //   angular.bootstrap(document, ['angularApp']);
 // });
 
-angular.module('angularApp').controller('mainController', function ($scope, $http, $timeout, $interval, $routeParams,
-  view, $location) {
+angular.module('angularApp').controller('mainController', function ($scope, view) {
     
   $scope.view = view;    
 
@@ -304,7 +303,7 @@ angular.module('angularApp').controller('mainController', function ($scope, $htt
 //     ajaxPrecos.updateConfig(config_update, function (config_data) {
 //       $scope.model.config.length = 0;
 //       $scope.model.config = angular.fromJson(config_data);
-//       $location.path('/');
+//       
 //     });
 //   };
   

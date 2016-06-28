@@ -21,14 +21,12 @@
   <!--Angular-services-->
   <script src="app/services/ajax.service.js"></script>  
   <script src="app/services/view.service.js"></script>  
+    
+  <!--Angular-controllers -->  
+  <script src="app/controllers/cadastros.diversoes.controller.js"></script>  
   
   <!--Angular-services (models)-->
-  <script src="app/models/cadastro.client.model.js"></script>
-  <script src="app/models/diversao.client.model.js"></script>
-  
-  <!--Angular-controllers -->  
-  <script src="app/controllers/cadastros.client.controller.js"></script>
-  <script src="app/controllers/diversoes.client.controller.js"></script>
+  <script src="app/models/cadastro.diversao.model.js"></script>  
   
   <!--Angular-routes -->  
   <script src="app/routes/angular.routes.js"></script>
@@ -51,16 +49,13 @@
       </div>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/"><i class="fa fa-gamepad fa-2x"></i> Playground</a></li>
+        <li><a href="#/"><i class="fa fa-home fa-2x" aria-hidden="true"></i> Home</a></li>
+        <li><a href="#/diversoes"><i class="fa fa-gamepad fa-2x"></i> Playground</a></li>
         <li><a href="#/cadastros"><i class="fa fa-user-plus fa-2x"></i> Cadastro</a></li>
-        <li><a href="#/clientes"><i class="fa fa-users fa-2x"></i> Clientes</a></li>
-        <!--<li><a href="#/table_historico"><i class="fa fa-history fa-2x"></i> Histórico</a></li>-->
+        <li><a href="#/clientes"><i class="fa fa-users fa-2x"></i> Clientes</a></li>        
         <li><a href="#/despesas"><i class="fa fa-usd fa-2x"></i> Despesas</a></li>
         <li><a href="#/relatorios"><i class="fa fa-line-chart fa-2x"></i> Relatório</a></li>
         <li><a href="#/precos"><i class="fa fa-money fa-2x"></i> Preços</a></li>
-
-
-
       </ul>
     </div>
   </nav>

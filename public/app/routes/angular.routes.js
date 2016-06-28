@@ -1,12 +1,16 @@
 angular.module('angularApp').config(function ($routeProvider) {
   $routeProvider
     .when('/', {
+      templateUrl: 'app/views/home.html',
+      controller: 'mainController'
+    })
+    .when('/diversoes', {
       templateUrl: 'app/views/diversao.html',
-      controller: 'diversoesController'
-    })    
+      controller: 'cadastrosDiversoesCtrl'
+    })
     .when('/cadastros', {
       templateUrl: 'app/views/cadastro.html',
-      controller: 'cadastrosController'
+      controller: 'cadastrosDiversoesCtrl'
     })
     .when('/precos', {
       templateUrl: 'app/views/precos.html',
@@ -14,7 +18,7 @@ angular.module('angularApp').config(function ($routeProvider) {
     })
     .when('/clientes', {
       templateUrl: 'app/views/clientes.html',
-      controller: 'cadastrosController'
+      controller: 'cadastrosDiversoesCtrl'
     })
     .when('/despesas', {
       templateUrl: 'app/views/despesas.html',
