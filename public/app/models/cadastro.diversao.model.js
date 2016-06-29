@@ -1,4 +1,4 @@
-angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax) {
+angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $location) {
 
   var URL_CAD = 'http://localhost:3000/cadastros/';
   var URL_DIV = 'http://localhost:3000/diversoes/';
@@ -106,6 +106,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax) {
     ajax.createEntity(URL_CAD, cadastro).success(function (data) {
       //outra estratégia é chamar service.listaCadastros();
       service.cadastros.push(data);
+      service.alerta = data.nomeCrianca + " adicionado(a) com sucesso!";
     });
   }
 
@@ -121,18 +122,19 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax) {
       ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
         service.listaCadastros();
       });
-    } else {
-      service.alerta = "Sessão iniciada. Não é possível atualizar este cadastro.";
+    } else {      
+      service.alerta = cadastro.nomeCrianca + " possui um sessão iniciada! Não é possível atualizar seu cadastro neste momento.";
     }
   }
 
   function _removeCadastro(cadastro) {
     if (!(cadastro.brincando)) {
-      ajax.deleteEntity(URL_CAD, cadastro).success(function (data) {
+      ajax.deleteEntity(URL_CAD, cadastro).success(function (data) {        
         service.listaCadastros();
+        service.alerta = "Cadastro removido com sucesso.";
       });
     } else {
-      service.alerta = "Sessão iniciada. Não é possível remover este cadastro.";
+      service.alerta = cadastro.nomeCrianca + " possui um sessão iniciada! Não é possível remover seu cadastro neste momento.";
     }
   }
 
