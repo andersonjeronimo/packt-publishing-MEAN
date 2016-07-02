@@ -1,10 +1,23 @@
-angular.module('angularApp').factory('view', function ($location) {  
+angular.module('angularApp').factory('view', function ($location) {
   return {
     app_name: 'Diversão MaisKidMais',
-    operadoras : ['CLARO', 'OI', 'VIVO', 'TIM', 'NEXTEL', 'NET', 'OUTRA'],        
+    data : new Date().toDateString(),
+    telefone: {
+      tipo: 'fixo',
+      filtro: '(99)9999-9999'
+    },
+    fixo: {
+      tipo: 'fixo',
+      filtro: '(99)9999-9999'
+    },
+    celular: {
+      tipo: 'celular',
+      filtro: '(99)99999-9999'
+    },
+    operadoras: ['CLARO', 'OI', 'VIVO', 'TIM', 'NEXTEL', 'NET', 'OUTRA'],
     filtro: '',
     ordem: '',
-    checked: -1,       
+    checked: -1,
     ordena: function (criterio) {
       this.ordem = criterio;
     },
@@ -15,6 +28,6 @@ angular.module('angularApp').factory('view', function ($location) {
         this.checked = index;
       }
     },
-    go_home : $location.path('/')    
+    go_home: $location.path('/')
   }
 });

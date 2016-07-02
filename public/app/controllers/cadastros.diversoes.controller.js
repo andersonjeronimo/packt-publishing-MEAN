@@ -1,14 +1,14 @@
-angular.module('angularApp').controller('cadastrosDiversoesCtrl', function ($scope, view, cadastroDiversaoModel) {
+angular.module('angularApp').controller('cadastrosDiversoesCtrl', function ($scope, view, cadastroDiversaoModel, telefoneFilter) {
 
   $scope.model = cadastroDiversaoModel;
   $scope.view = view;
 
   $scope.adicionaCadastro = function (cadastro) {
-    $scope.model.adicionaCadastro(cadastro);
+    cadastroDiversaoModel.adicionaCadastro(cadastro);
     delete $scope.cadastro;
-  };
+  };  
 
-  $scope.model.listaCadastros();
-  $scope.model.listaDiversoes();
+  cadastroDiversaoModel.listaCadastros();
+  cadastroDiversaoModel.listaDiversoes();
 
 });

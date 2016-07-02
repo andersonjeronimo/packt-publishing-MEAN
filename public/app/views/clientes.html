@@ -17,14 +17,13 @@
 				</div>
 				<thead>
 					<tr>
-						<th class="col-md-1">Menu</th>
+						<th class="col-md-2">Opções</th>
 						<th class="col-md-2"><a href="" ng-click="view.ordena('nomeCrianca')">Criança</a></th>
-						<th class="col-md-2"><a href="" ng-click="view.ordena('dataNascimento')">Nascimento</a></th>
+						<th class="col-md-1"><a href="" ng-click="view.ordena('dataNascimento')">Nascimento</a></th>
 						<th class="col-md-2"><a href="" ng-click="view.ordena('nomeResponsavel')">Responsável</a></th>
-						<th class="col-md-1"><a href="" ng-click="view.ordena('telefone')">Telefone</a></th>
+						<th class="col-md-2"><a href="" ng-click="view.ordena('telefone')">Telefone</a></th>
 						<th class="col-md-1"><a href="" ng-click="view.ordena('operadora')">Operadora</a></th>
 						<th class="col-md-2">Observações</th>
-						<th class="col-md-1">Excluir</th>
 					</tr>
 				</thead>
 
@@ -32,10 +31,11 @@
 					<tr ng-repeat="cadastro in model.cadastros | filter:view.filtro | orderBy:view.ordem">
 						<td>
 							<div class="btn-group" role="group">
-								<a href="" ng-click="model.adicionaDiversao(cadastro);" ng-hide="cadastro.brincando == true || view.checked == $index"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></a>
-								<a href="" ng-show="cadastro.brincando == true"><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></a>
-								<a href="" ng-click="view.change($index);" ng-hide="view.checked == $index"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a>
-								<a href="" ng-click="model.atualizaCadastro(cadastro); view.change($index);" ng-show="view.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Brincar!" ng-click="model.adicionaDiversao(cadastro);" ng-hide="cadastro.brincando == true || view.checked == $index"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Brincando!" ng-show="cadastro.brincando == true"><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Atualizar" ng-click="view.change($index);" ng-hide="view.checked == $index"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Salvar" ng-click="model.atualizaCadastro(cadastro); view.change($index);" ng-show="view.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Remover" ng-click="model.removeCadastro(cadastro);" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 							</div>
 						</td>
 
@@ -46,7 +46,7 @@
 						<td>
 							<div ng-hide="view.checked == $index">{{cadastro.dataNascimento | date:'dd/MM/yyyy'}}</div>
 							<div class="btn-group" ng-show="view.checked == $index" role="group">
-								<input type="text" ng-model="cadastro.dataNascimento" ui-mask="99/99/9999" ng-show="view.checked == $index">
+								<input type="text" ng-model="cadastro.dataNascimentoStr" ui-mask="99/99/9999" ng-show="view.checked == $index">
 							</div>
 						</td>
 						<td>
@@ -54,8 +54,18 @@
 							<input type="text" ng-model="cadastro.nomeResponsavel" ng-show="view.checked == $index">
 						</td>
 						<td>
-							<div ng-bind="cadastro.telefone" ng-hide="view.checked == $index"></div>
-							<input type="text" ng-model="cadastro.telefone" ui-mask="(99)9999-9999" ng-show="view.checked == $index">
+							<div ng-hide="view.checked == $index">{{cadastro.telefone | telefone}}</div>
+
+							<div ng-show="view.checked == $index">
+								<div class="radio-inline">
+									<label><input type="radio" ng-model="view.telefone" ng-value="view.fixo" ng-checked="true">Fixo</label>								
+								</div>
+								<div class="radio-inline">
+									<label><input type="radio" ng-model="view.telefone" ng-value="view.celular">Celular</label>
+								</div>
+								<input type="text" ng-show="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
+								<input type="text" ng-hide="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
+							</div>
 						</td>
 						<td>
 							<div ng-bind="cadastro.operadora" ng-hide="view.checked == $index"></div>
@@ -68,23 +78,23 @@
 							<div ng-bind="cadastro.observacoes" ng-hide="view.checked == $index"></div>
 							<textarea cols="30" rows="3" ng-model="cadastro.observacoes" ng-show="view.checked == $index"></textarea>
 						</td>
-						<td>
+						<!--<td>
 							<a href="" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-caret-square-o-down fa-2x" aria-hidden="true"></i></a>
 							<div uib-collapse="isCollapsed">
 								<div class="well well-lg">
-									<div class="btn-group" role="group">
-										<a href="" ng-click="model.removeCadastro(cadastro);" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+									<div class="alert alert-info">
+										<strong>Atenção!</strong> {{model.alerta}}
 									</div>
 								</div>
 							</div>
-						</td>
+						</td>-->
 					</tr>
 				</tbody>
 			</table>
 
 		</div>
 		<div class="panel-footer">
-			<p>&copy; Diversão MaisKidMais 2016</p>
+			<p>&copy; Diversão MaisKidMais, {{view.data}}</p>
 		</div>
 	</div>
 </div>

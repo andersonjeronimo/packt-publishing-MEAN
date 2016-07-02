@@ -18,6 +18,7 @@
     "bootstrap": "~3.3.6",
     "font-awesome": "~4.6.3",
     "jquery": "~2.2.4",
-    "angular-ui-mask": "~1.8.4"
+    "angular-ui-mask": "~1.8.4",
+    "jQuery": "~3.0.0"
   }
 }

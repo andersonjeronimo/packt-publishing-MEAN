@@ -103,6 +103,12 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
 
   function _adicionaCadastro(cadastro) {
     cadastro.brincando = false;
+    var data_str = cadastro.dataNascimentoStr;
+    var dia, mes, ano;
+    dia = data_str.substring(0, 2);
+    mes = data_str.substring(2, 4);
+    ano = data_str.substring(4);
+    cadastro.dataNascimento = new Date(ano, mes - 1, dia);
     ajax.createEntity(URL_CAD, cadastro).success(function (data) {
       //outra estratégia é chamar service.listaCadastros();
       service.cadastros.push(data);
@@ -118,21 +124,29 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
 
   function _atualizaCadastro(cadastro) {
     if (!(cadastro.brincando)) {
-
+      var data_str = cadastro.dataNascimentoStr;
+      var dia, mes, ano;
+      dia = data_str.substring(0, 2);
+      mes = data_str.substring(2, 4);
+      ano = data_str.substring(4);
+      cadastro.dataNascimento = new Date(ano, mes - 1, dia);
       ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
         service.listaCadastros();
+        service.alerta = cadastro.nomeCrianca + " teve seus dados atualizados com sucesso!";
       });
-    } else {      
+    } else {
       service.alerta = cadastro.nomeCrianca + " possui um sessão iniciada! Não é possível atualizar seu cadastro neste momento.";
     }
   }
 
   function _removeCadastro(cadastro) {
     if (!(cadastro.brincando)) {
-      ajax.deleteEntity(URL_CAD, cadastro).success(function (data) {        
-        service.listaCadastros();
-        service.alerta = "Cadastro removido com sucesso.";
-      });
+      if (confirm('Deseja remover o cadastro de ' + cadastro.nomeCrianca + ' ?')) {
+        ajax.deleteEntity(URL_CAD, cadastro).success(function (data) {
+          service.listaCadastros();
+          service.alerta = "Cadastro removido com sucesso.";
+        });
+      }
     } else {
       service.alerta = cadastro.nomeCrianca + " possui um sessão iniciada! Não é possível remover seu cadastro neste momento.";
     }

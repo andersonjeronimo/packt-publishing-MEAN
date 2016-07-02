@@ -11,39 +11,50 @@
 
 			<form class="form-horizontal" role="form" name="form_cadastro" novalidate>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Nome</label>
-					<div class="col-sm-10">
+					<label class="control-label col-md-2" for="">Nome</label>
+					<div class="col-md-10">
 						<input type="text" class="form-control" ng-model="cadastro.nomeCrianca" ng-required="true" placeholder="Nome da criança">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Data de Nascimento</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" ng-model="cadastro.dataNascimento" ui-mask="99/99/9999">
+					<label class="control-label col-md-2" for="">Data de Nascimento</label>
+					<div class="col-md-2">
+						<input type="text" class="form-control" ng-model="cadastro.dataNascimentoStr" ui-mask="99/99/9999">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Responsável</label>
-					<div class="col-sm-10">
+					<label class="control-label col-md-2" for="">Responsável</label>
+					<div class="col-md-10">
 						<input type="text" class="form-control" ng-model="cadastro.nomeResponsavel" ng-required="true" placeholder="Nome do responsável">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Telefone</label>
-					<div class="col-sm-5">
+					<label class="control-label col-md-2" for="">Telefone</label>
+					<div class="col-md-3">
+						<div class="radio-inline">
+							<label>
+								<input type="radio" ng-model="view.telefone" ng-value="view.fixo" ng-checked="true">Fixo</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" ng-model="view.telefone" ng-value="view.celular">Celular</label>
+						</div>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-							<input type="text" ng-model="cadastro.telefone" ui-mask="(99)9999-9999" class="form-control" ng-required="true">
+							<input type="text" ng-show="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}} class="form-control"
+							ng-required="true">
+							<input type="text" ng-hide="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}} class="form-control"
+							ng-required="true">
 						</div>
-					</div>
+					</div>					
 				</div>
-
+				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Operadora</label>
-					<div class="col-sm-5">
+					<label class="control-label col-md-2" for="">Operadora</label>
+					<div class="col-md-2">
 						<select class="btn btn-primary dropdown-toggle" ng-model="cadastro.operadora" ng-options="operadora for operadora in view.operadoras"
 						ng-required="true">
 							<option value="" disabled selected>Selecione</option>
@@ -52,15 +63,15 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Observações</label>
-					<div class="col-sm-10">
+					<label class="control-label col-md-2" for="">Observações</label>
+					<div class="col-md-10">
 						<textarea ng-model="cadastro.observacoes" class="form-control" rows="5" placeholder="Observações..."></textarea>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<!--ng-disabled="form_principal.$invalid || form_principal.$pristine"-->
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-md-offset-2 col-md-10">
 						<button type="submit" class="btn btn-lg btn-success" ng-click="adicionaCadastro(cadastro)" ng-disabled="form_cadastro.$invalid || form_cadastro.$pristine">Cadastrar Cliente</button>
 					</div>
 				</div>
@@ -68,7 +79,7 @@
 
 		</div>
 		<div class="panel-footer">
-			<p>&copy; Diversão MaisKidMais 2016</p>
+			<p>&copy; Diversão MaisKidMais, {{view.data}}</p>
 		</div>
 	</div>
 </div>
