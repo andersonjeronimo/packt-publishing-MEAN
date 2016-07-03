@@ -1,7 +1,17 @@
-angular.module('angularApp').factory('view', function ($location) {
+angular.module('angularApp').factory('view', function () {
   return {
     app_name: 'Diversão MaisKidMais',
-    data : new Date().toDateString(),
+    data: new Date().toDateString(),
+    tempo: {
+      inicio: {
+        hora: new Date().getHours(),
+        minuto: new Date().getMinutes()
+      },
+      fim: {
+        hora: new Date().getHours() + 1,
+        minuto: new Date().getMinutes()
+      }
+    },
     telefone: {
       tipo: 'fixo',
       filtro: '(99)9999-9999'
@@ -27,7 +37,6 @@ angular.module('angularApp').factory('view', function ($location) {
       } else {
         this.checked = index;
       }
-    },
-    go_home: $location.path('/')
+    }
   }
 });

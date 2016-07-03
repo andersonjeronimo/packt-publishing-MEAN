@@ -13,6 +13,7 @@ var DiversionSchema = new Schema({
 	valorFinal: Number,
 	desconto: Number,
 	troco: Number,
+	nomeCrianca: String,
 	registerID: {
 		type: Schema.ObjectId,
 		ref: 'Register'

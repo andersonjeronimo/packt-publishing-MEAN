@@ -30,15 +30,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
   function _iniciaDiversao(diversao) {
     if (!(diversao.iniciada)) {
       if (true) { //se a hora é válida
-        diversao.iniciada = true;
-
-        var inicio = new Date();
-
-        var fim = new Date();
-
-        diversao.inicio = inicio;
-        diversao.fim = fim;
-        
+        diversao.iniciada = true;      
 
         //         var minuto_milis = 60000;
         // 
@@ -53,7 +45,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
         // cadastro.historico[last_index].valor_final = valor_total;
 
         ajax.updateEntity(URL_DIV, diversao).success(function (data) {
-          console.log(data);
+          service.alerta = data.nomeCrianca + ' divertindo-se agora!';
         });
       } else {
         service.alerta = "Hora final deve ser maior que hora inicial";
@@ -75,6 +67,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
     this.valorFinal = 0;
     this.desconto = 0;
     this.troco = 0;
+    this.nomeCrianca = cadastro.nomeCrianca;
     this.registerID = cadastro;
   };
 
@@ -97,6 +90,8 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
       cadastro.brincando = true;
       ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
         service.listaCadastros();
+        service.alerta = cadastro.nomeCrianca + ' aguardando para brincar...';
+        $location.path('/diversoes');
       });
     }
   }

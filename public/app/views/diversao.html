@@ -10,9 +10,9 @@
 			<table class="table table-hover table-striped table-condensed">
 				<thead>
 					<tr>
-						<th class="col-md-2">Criança</th>
+						<th class="col-md-3">Criança</th>
 						<th class="col-md-1">Início</th>
-						<th class="col-md-5">Tempo</th>
+						<th class="col-md-4">Progresso</th>
 						<th class="col-md-1">Fim</th>
 						<th class="col-md-3">Ações</th>
 					</tr>
@@ -22,21 +22,28 @@
 						<td ng-bind="diversao.nomeCrianca"></td>
 						<td>
 							<div ng-show="diversao.iniciada" ng-bind="diversao.inicio | date:'HH:mm'"></div>
-							<div class="btn-group" ng-hide="diversao.iniciada">
-								<input type="date" ng-model="diversao.inicio">
+							<div class="input-group" ng-hide="diversao.iniciada">
+								<input type="number" min="0" max="23" ng-model="view.tempo.inicio.hora" class="form-control" required="true">								
+								<input type="number" min="0" max="59" ng-model="view.tempo.inicio.minuto" class="form-control" required="true">
 							</div>
 						</td>
 						<td>
-							<barra-progresso diversao="diversao"></barra-progresso>
+							<div ng-show="diversao.iniciada">
+							<barra-progresso diversao="diversao"></barra-progresso>								
+							</div>
+							<div ng-hide="diversao.iniciada">
+								<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+							</div>
 						</td>
 						<td>
 							<div ng-show="diversao.iniciada" ng-bind="diversao.fim | date:'HH:mm'"></div>
 							<div class="btn-group" ng-hide="diversao.iniciada">
-								<input type="date" ng-model="diversao.fim">
+								<input type="number" min="0" max="23" ng-model="view.tempo.fim.hora" class="form-control" required="true">								
+								<input type="number" min="0" max="59" ng-model="view.tempo.fim.minuto" class="form-control" required="true">
 							</div>
 						</td>
 						<td>
-							<button class="btn btn-primary" ng-click="model.iniciaDiversao(diversao);" ng-show="diversao.iniciada == false">
+							<button class="btn btn-primary" ng-click="iniciaDiversao(diversao);" ng-show="diversao.iniciada == false">
 								<i class="fa fa-play"></i>
 							</button>
 
@@ -72,7 +79,7 @@
 
 		</div>
 		<div class="panel-footer">
-			<p>&copy; Diversão MaisKidMais, {{view.data}}</p>
+			<p>&copy; {{view.app_name}}, {{view.data}}</p>
 		</div>
 	</div>
 
