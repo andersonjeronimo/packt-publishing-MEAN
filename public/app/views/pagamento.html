@@ -1,56 +1,56 @@
 <div>
 	<form class="form-horizontal" role="form" name="form_pgto" novalidate>
 		<div class="form-group">
-			<label class="control-label col-sm-4" for="">Valor Pago</label>
-			<div class="col-sm-8">
+			<label class="control-label col-md-4" for="">Valor Pago</label>
+			<div class="col-md-8">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-					<input type="text" class="form-control" ng-model="diversao.valorPago" ng-change="calculaValor(diversao)" />
+					<input type="text" class="form-control" ng-model="diversao.valorPago" ng-change="calculaValor();" />
 				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-4" for="">Desconto</label>
-			<div class="col-sm-6">
+			<label class="control-label col-md-4" for="">Desconto</label>
+			<div class="col-md-6">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-					<input type="text" class="form-control" ng-model="diversao.desconto" ng-change="calculaValor(diversao)" />
+					<input type="text" class="form-control" ng-model="desconto" ng-change="calculaValor();" />
 				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-4" for="">Troco</label>
-			<div class="col-sm-8">
-				<h3 ng-bind="diversao.troco | currency:'R$ '"></h3>
+			<label class="control-label col-md-4" for="">Troco</label>
+			<div class="col-md-8">
+				<h3 ng-bind="troco | currency:'R$ '"></h3>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-4" for="">Valor Total</label>
-			<div class="col-sm-8">
+			<label class="control-label col-md-4" for="">Valor Total</label>
+			<div class="col-md-8">
 				<h3 ng-bind="diversao.valorFinal | currency:'R$ '"></h3>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-8">
+			<div class="col-md-offset-2 col-md-8">
 				<label>
-					<input type="checkbox" data-ng-model="diversao.adicional" ng-change="calculaValor(diversao)"> Valor adicional (par de meias)</label>
+					<input type="checkbox" ng-model="adicional" ng-change="calculaValor();"> Adicional</label>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-8">
-				<select class="btn btn-primary dropdown-toggle" ng-model="diversao.formaDePagamento"
-				ng-options="forma for forma in formasDePagamento" ng-required="true">
+			<div class="col-md-8">
+				<select class="btn btn-primary dropdown-toggle" ng-model="diversao.formaDePagamento" ng-options="forma for forma in formasDePagamento"
+				ng-required="true">
 					<option value="" disabled selected>Forma de pagamento</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-8">
+			<div class="col-md-8">
 				<button class="btn btn-lg btn-success" ng-click="efetuaPagamento(cadastro)" ng-disabled="form_pgto.$invalid || form_pgto.$pristine">Efetua Pagamento</button>
 			</div>
 		</div>

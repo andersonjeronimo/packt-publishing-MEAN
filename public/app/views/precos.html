@@ -1,54 +1,51 @@
-<!--<div class="container">
+<div class="container">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Preços</h3>
 		</div>
 		<div class="panel-body">
+			<div class="alert alert-info">
+				<strong>Atenção!</strong> {{model.alerta}}
+			</div>
 			<form class="form-horizontal" role="form" name="form_precos" novalidate>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">1 Hora</label>
-					<div class="col-sm-10">
-						<h2> {{model.config[0].valor_hora | currency:"R$"}}</h2>
+					<label class="control-label col-md-2" for="">1 Hora</label>
+					<div class="col-md-10">						
+						<h2> {{preco.valorSessao | currency:"R$"}}</h2>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Par de meias</label>
-					<div class="col-sm-10">
-						<h2>{{model.config[0].valor_par_meias | currency:"R$"}}</h2>
+					<label class="control-label col-md-2" for="">Par de meias</label>
+					<div class="col-md-10">
+						<h2>{{preco.valorParMeias | currency:"R$"}}</h2>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Valor da hora</label>
-					<div class="col-sm-4">
+					<label class="control-label col-md-2" for="">Valor da hora</label>
+					<div class="col-md-2">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-							<input type="text" class="form-control" ng-model="config.valor_hora" ng-show="!model.configurado()" placeholder="Nova" />
-							<input type="text" class="form-control" ng-model="model.config[0].valor_hora" ng-show="model.configurado()" placeholder="Valor da Hora"
-							/>
+							<input type="number" class="form-control" ng-model="preco.valorSessao" required="true"/>							
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="">Valor par de meias</label>
-					<div class="col-sm-4">
+					<label class="control-label col-md-2" for="">Valor par de meias</label>
+					<div class="col-md-2">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-							<input type="text" class="form-control" ng-model="config.valor_par_meias" ng-show="!model.configurado()" placeholder="Nova"
-							/>
-							<input type="text" class="form-control" ng-model="model.config[0].valor_par_meias" ng-show="model.configurado()" placeholder="Valor do par de meias"
-							/>
+							<input type="number" class="form-control" ng-model="preco.valorParMeias" required="true"/>							
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="input-group">
-							<button type="submit" class="btn btn-lg btn-success" ng-click="configura(config)" ng-show="!model.configurado()" ng-disabled="form_precos.$invalid || form_precos.$pristine">Configura Valor</button>
-							<button type="submit" class="btn btn-lg btn-success" ng-click="atualiza_config()" ng-show="model.configurado()" ng-disabled="form_precos.$invalid || form_precos.$pristine">Atualiza Valor</button>
+					<div class="col-md-offset-2 col-md-10">
+						<div class="input-group">							
+							<button type="submit" class="btn btn-lg btn-success" ng-click="atualizaPrecos(preco);" ng-disabled="form_precos.$invalid || form_precos.$pristine">Atualiza Valor</button>
 						</div>
 					</div>
 				</div>
@@ -58,4 +55,4 @@
 			<p>&copy; {{view.app_name}}, {{view.data}}</p>
 		</div>
 	</div>
-</div>-->
+</div>

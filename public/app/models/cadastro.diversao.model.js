@@ -28,21 +28,13 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
   }
 
   function _iniciaDiversao(diversao) {
-    if (!(diversao.iniciada)) {
-      if (true) { //se a hora é válida
-        diversao.iniciada = true;      
-
-        //         var minuto_milis = 60000;
-        // 
-        //         var tempo_total_milis = fim.getTime() - inicio.getTime();
-        //         var tempo_total_min = tempo_total_milis / minuto_milis;
-        //         
-        //         var valor_minuto = $scope.model.config[$scope.model.config.length - 1].valor_hora / 60;
-        // var valor_total = Math.round(valor_minuto * tempo_total_min);
-        // var valor_total = valor_minuto * tempo_total_min;
-
-        // cadastro.historico[last_index].valor_total = valor_total;
-        // cadastro.historico[last_index].valor_final = valor_total;
+    if (!(diversao.iniciada)) {      
+      diversao.inicio = new Date().setHours(diversao.tempo.inicio.hora, diversao.tempo.inicio.minuto, 59, 999);
+      diversao.fim = new Date().setHours(diversao.tempo.fim.hora, diversao.tempo.fim.minuto, 59, 999);            
+      if (diversao.inicio < diversao.fim) {
+        diversao.iniciada = true;
+        
+        //calcular valor
 
         ajax.updateEntity(URL_DIV, diversao).success(function (data) {
           service.alerta = data.nomeCrianca + ' divertindo-se agora!';

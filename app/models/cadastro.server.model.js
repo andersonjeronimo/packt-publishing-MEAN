@@ -5,7 +5,7 @@ var RegisterSchema = new Schema({
 	nomeCrianca: String,
 	nomeResponsavel: String,
 	dataNascimento: Date,
-	dataNascimentoStr : String,
+	dataNascimentoStr: String,
 	telefone: String,
 	operadora: String,
 	observacoes: String,

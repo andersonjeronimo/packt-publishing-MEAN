@@ -14,7 +14,7 @@ angular.module('angularApp').config(function ($routeProvider) {
     })
     .when('/precos', {
       templateUrl: 'app/views/precos.html',
-      controller: 'mainController'
+      controller: 'precosController'     
     })
     .when('/clientes', {
       templateUrl: 'app/views/clientes.html',

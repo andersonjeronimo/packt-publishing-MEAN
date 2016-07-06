@@ -32,7 +32,7 @@
 				<tbody>
 					<tr ng-repeat="cadastro in model.cadastros | filter:view.filtro | orderBy:view.ordem">
 						<td>
-							<a class="btn btn-primary" href="" data-toggle="tooltip" title="Editar" ng-click="view.change($index);" ng-hide="view.checked == $index"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+							<a class="btn btn-primary" href="" data-toggle="tooltip" title="Editar" ng-click="view.change($index);" ng-hide="view.checked == $index" ng-disabled="cadastro.brincando"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
 							<a class="btn btn-success" href="" data-toggle="tooltip" title="Salvar" ng-click="model.atualizaCadastro(cadastro); view.change($index);"
 							ng-show="view.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
 
@@ -80,7 +80,7 @@
 							</select>
 						</td>
 						<td>
-							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="model.removeCadastro(cadastro);" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="model.removeCadastro(cadastro);" ng-disabled="cadastro.brincando" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 							<a href="" data-toggle="tooltip" title="Editando..." ng-show="view.checked == $index"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
 						</td>
 						<!--<td>
