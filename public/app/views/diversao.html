@@ -18,7 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="diversao in model.diversoes">
+					<tr ng-repeat="diversao in model.diversoes">						
 						<td ng-bind="diversao.nomeCrianca"></td>
 						<td ng-show="diversao.iniciada" colspan="2" style="text-align: center;">
 							<div ng-bind="diversao.inicio | date:'HH:mm'"></div>
@@ -33,7 +33,7 @@
 								<input type="number" min="0" max="59" ng-model="view.tempo.inicio.minuto" class="form-control" required="true">
 							</div>
 						</td>
-						
+
 						<td style="text-align: center;">
 							<div ng-show="diversao.iniciada">
 								<barra-progresso diversao="diversao"></barra-progresso>
@@ -41,7 +41,7 @@
 							<div ng-hide="diversao.iniciada">
 								<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
 							</div>
-						</td>					
+						</td>
 
 						<td ng-show="diversao.iniciada" colspan="2" style="text-align: center;">
 							<div ng-bind="diversao.fim | date:'HH:mm'"></div>
@@ -63,29 +63,29 @@
 								<i class="fa fa-play"></i>
 							</button>
 
-							<button class="btn btn-primary" ng-click="model.cancelaDiversao(diversao);" ng-show="diversao.paga == false">
+							<button class="btn btn-danger" ng-click="model.cancelaDiversao(diversao);" ng-show="diversao.paga == false">
 								<i class="fa fa-stop" aria-hidden="true"></i>
 							</button>
 
-							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed;" ng-show="diversao.iniciada == true && diversao.paga == false">
+							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed;" ng-show="diversao.iniciada == true">
 								<i class="fa fa-usd"></i>
 							</button>
 
-							<button class="btn btn-success" ng-show="diversao.iniciada == true" ng-click="model.adicionaTempo(diversao); model.calculaValor(diversao)">
+							<button class="btn btn-success" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="model.adicionaTempo(diversao)">
 								<i class="fa fa-hourglass"></i><i class="fa fa-plus"></i>
 							</button>
 
-							<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed" ng-show="diversao.iniciada == true && diversao.paga == true">
-								<i class="fa fa-usd"></i><i class="fa fa-plus"></i>
+							<button class="btn btn-danger" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="model.diminuiTempo(diversao)">
+								<i class="fa fa-hourglass"></i><i class="fa fa-minus"></i>
 							</button>
 
-							<button class="btn btn-danger" ng-click="model.finalizaBrincadeira(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
+							<button class="btn btn-success" ng-click="model.finalizaDiversao(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
 								<i class="fa fa-floppy-o"></i><i class="fa fa-check"></i>
 							</button>
 
 							<div uib-collapse="isCollapsed">
 								<div class="well well-lg">
-									<pagamento diversao="diversao" preco="preco"></pagamento>
+									<pagamento diversao="diversao" preco="preco"></pagamento>									
 								</div>
 							</div>
 						</td>

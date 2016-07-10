@@ -2,8 +2,8 @@ angular.module('angularApp').controller('cadastrosDiversoesCtrl', function ($sco
 
   $scope.model = cadastroDiversaoModel;
   $scope.view = view;
-  $scope.preco = {};
-
+  $scope.preco = {};  
+  
   precoModel.listaPrecos().then(function (data) {
     if (data.length > 0) {
       $scope.preco = data[0];

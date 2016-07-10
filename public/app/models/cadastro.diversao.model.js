@@ -28,14 +28,22 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
   }
 
   function _iniciaDiversao(diversao) {
-    if (!(diversao.iniciada)) {      
-      diversao.inicio = new Date().setHours(diversao.tempo.inicio.hora, diversao.tempo.inicio.minuto, 59, 999);
-      diversao.fim = new Date().setHours(diversao.tempo.fim.hora, diversao.tempo.fim.minuto, 59, 999);            
+    if (!(diversao.iniciada)) {
+
+      var dataIni = new Date();
+      var horaIni = diversao.tempo.inicio.hora;
+      var minutoIni = diversao.tempo.inicio.minuto;
+      dataIni.setHours(horaIni, minutoIni);
+      diversao.inicio = dataIni;
+
+      var dataFim = new Date();
+      var horaFim = diversao.tempo.fim.hora;
+      var minutoFim = diversao.tempo.fim.minuto;
+      dataFim.setHours(horaFim, minutoFim);
+      diversao.fim = dataFim;
+
       if (diversao.inicio < diversao.fim) {
         diversao.iniciada = true;
-        
-        //calcular valor
-
         ajax.updateEntity(URL_DIV, diversao).success(function (data) {
           service.alerta = data.nomeCrianca + ' divertindo-se agora!';
         });
@@ -44,7 +52,57 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
       }
     }
   }
-  
+
+  function _adicionaTempo(diversao) {
+    if (!(diversao.paga)) {
+
+      var millis = Date.parse(diversao.fim);
+      millis += 15 * 60000;
+      diversao.fim = new Date(millis);
+
+      ajax.updateEntity(URL_DIV, diversao).success(function (data) {
+        service.alerta = data.nomeCrianca + ' pode brincar por mais tempo!';
+      });
+    } else {
+      service.alerta = "Já foi registrado o pagamento.";
+    }
+
+  }
+
+  function _diminuiTempo(diversao) {
+    if (!(diversao.paga)) {
+
+      var millis = Date.parse(diversao.fim);
+      millis -= 15 * 60000;
+      diversao.fim = new Date(millis);
+
+      ajax.updateEntity(URL_DIV, diversao).success(function (data) {
+        service.alerta = 'Foi alterado o tempo da sessão para ' + data.nomeCrianca;
+      });
+    } else {
+      service.alerta = "Já foi registrado o pagamento.";
+    }
+  }
+
+  function _finalizaDiversao(diversao) {
+    if (!(diversao.paga)) {
+      diversao.finalizada = true;
+      ajax.updateEntity(URL_DIV, diversao).success(function (data) {
+
+        var cadastroID = data.registerID;
+        ajax.readEntity(URL_CAD, cadastroID).success(function (cadastro) {
+          cadastro.brincando = false;
+          ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
+            service.listaDiversoes();
+            service.listaCadastros();
+          });
+        });
+      });
+
+    } else {
+      service.alerta = "Não foi registrado o pagamento dessa sessão.";
+    }
+  }
   //=========================================================================================  
     
   var Diversao = function (cadastro) {
@@ -54,11 +112,8 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
     this.finalizada = false;
     this.paga = false;
     this.formaPagamento = '';
-    this.adicional = false;
     this.valorPago = 0;
     this.valorFinal = 0;
-    this.desconto = 0;
-    this.troco = 0;
     this.nomeCrianca = cadastro.nomeCrianca;
     this.registerID = cadastro;
   };
@@ -143,6 +198,8 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
     cadastros: new Array,
     cadastro: null,
     adicionaDiversao: _adicionaDiversao,
+    adicionaTempo: _adicionaTempo,
+    diminuiTempo: _diminuiTempo,
     adicionaCadastro: _adicionaCadastro,
     listaCadastros: _listaCadastros,
     buscaCadastro: _buscaCadastro,
@@ -152,6 +209,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $l
     diversao: null,
     iniciaDiversao: _iniciaDiversao,
     cancelaDiversao: _cancelaDiversao,
+    finalizaDiversao: _finalizaDiversao,
     listaDiversoes: _listaDiversoes,
     alerta: 'Alertas aqui...'
   };
