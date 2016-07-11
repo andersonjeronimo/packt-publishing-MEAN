@@ -6,11 +6,11 @@ angular.module('angularApp').config(function ($routeProvider) {
     })
     .when('/diversoes', {
       templateUrl: 'app/views/diversao.html',
-      controller: 'cadastrosDiversoesCtrl'
+      controller: 'diversoesController'
     })
     .when('/cadastros', {
       templateUrl: 'app/views/cadastro.html',
-      controller: 'cadastrosDiversoesCtrl'
+      controller: 'cadastrosController'
     })
     .when('/precos', {
       templateUrl: 'app/views/precos.html',

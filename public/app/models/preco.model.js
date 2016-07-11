@@ -1,12 +1,11 @@
 angular.module('angularApp').factory('precoModel', function (ajax, $q) {
-  var URL_PRECO = 'http://localhost:3000/precos/';
   
   var service = {
-    alerta:'Alertas aqui...',
+    URL: 'http://localhost:3000/precos/',
     listaPrecos: function () {
       var defer = $q.defer();
-      ajax.listEntities(URL_PRECO).success(function (data) {
-        defer.resolve(data);       
+      ajax.listEntities(service.URL).success(function (data) {
+        defer.resolve(data);
       }).error(function (data) {
         defer.reject(data);
       });
@@ -15,8 +14,8 @@ angular.module('angularApp').factory('precoModel', function (ajax, $q) {
     inserePrecos: function () {
       var defer = $q.defer();
       var preco = {};
-      ajax.createEntity(URL_PRECO, preco).success(function (data) {
-        defer.resolve(data);        
+      ajax.createEntity(service.URL, preco).success(function (data) {
+        defer.resolve(data);
       }).error(function (data) {
         defer.reject(data);
       });
@@ -24,14 +23,15 @@ angular.module('angularApp').factory('precoModel', function (ajax, $q) {
     },
     atualizaPrecos: function (preco) {
       var defer = $q.defer();
-      ajax.updateEntity(URL_PRECO, preco).success(function (data) {
-        defer.resolve(data);        
+      ajax.updateEntity(service.URL, preco).success(function (data) {
+        defer.resolve(data);
       }).error(function (data) {
         defer.reject(data);
       });
       return defer.promise;
     }
   };
-  
+
   return service;
+  
 });
