@@ -18,7 +18,7 @@ angular.module('angularApp').config(function ($routeProvider) {
     })
     .when('/clientes', {
       templateUrl: 'app/views/clientes.html',
-      controller: 'cadastrosDiversoesCtrl'
+      controller: 'cadastrosController'
     })
     .when('/despesas', {
       templateUrl: 'app/views/despesas.html',

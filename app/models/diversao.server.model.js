@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var DiversionSchema = new Schema({
-	tempo: Schema.Types.Mixed,
+	//tempo: Schema.Types.Mixed,
 	inicio: Date,
 	fim: Date,
 	iniciada: Boolean,

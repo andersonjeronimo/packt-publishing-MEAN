@@ -1,4 +1,4 @@
-angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q) {
+angular.module('angularApp').factory('diversaoModel', function (ajax, $q) {
 
   var URL = 'http://localhost:3000/diversoes/';
 
@@ -22,10 +22,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     return defer.promise;
   }
 
-  function _iniciaDiversao(diversao) {      
-    // diversao.inicio = new Date().setHours(diversao.tempo.inicio.hora, diversao.tempo.inicio.minuto);      
-    // diversao.fim = new Date().setHours(diversao.tempo.fim.hora, diversao.tempo.fim.minuto);            
-    // if (diversao.inicio < diversao.fim) {
+  function _iniciaDiversao(diversao) {    
     var defer = $q.defer();
     diversao.iniciada = true;
     ajax.updateEntity(URL, diversao).success(function (data) {
@@ -33,12 +30,10 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     }).error(function (data) {
       defer.reject(data);
     });
-    return defer.promise;
-    //} 
+    return defer.promise;     
   }
 
-  function _adicionaTempo(diversao, minutos) {
-    //if (!(diversao.paga)) {
+  function _adicionaTempo(diversao, minutos) {    
     var defer = $q.defer();
     var millis = Date.parse(diversao.fim);
     millis += minutos * 60000;
@@ -48,15 +43,10 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     }).error(function (data) {
       defer.reject(data);
     });
-    return defer.promise;      
-    // } else {
-    //   service.alerta = "Já foi registrado o pagamento.";
-    // }
-
+    return defer.promise;
   }
 
-  function _diminuiTempo(diversao, minutos) {
-    //if (!(diversao.paga)) {
+  function _diminuiTempo(diversao, minutos) {    
     var defer = $q.defer();
     var millis = Date.parse(diversao.fim);
     millis -= minutos * 60000;
@@ -66,33 +56,18 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     }).error(function (data) {
       defer.reject(data);
     });
-    return defer.promise;
-    // } else {
-    //   service.alerta = "Já foi registrado o pagamento.";
-    // }
+    return defer.promise;     
   }
 
-  function _finalizaDiversao(diversao) {
-    //if (!(diversao.paga)) {
+  function _finalizaDiversao(diversao) {    
     var defer = $q.defer();
     diversao.finalizada = true;
     ajax.updateEntity(URL, diversao).success(function (data) {
-      defer.resolve(data);
-      // var cadastroID = data.registerID;
-      // ajax.readEntity(URL_CAD, cadastroID).success(function (cadastro) {
-      //   cadastro.brincando = false;
-      //   ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
-      //     service.listaDiversoes();
-      //     service.listaCadastros();
-      //   });
-      // });
+      defer.resolve(data);      
     }).error(function (data) {
       defer.reject(data);
     });
-    return defer.promise;
-    // } else {
-    //   service.alerta = "Não foi registrado o pagamento dessa sessão.";
-    // }
+    return defer.promise;    
   }    
     
   var Diversao = function (cadastro) {
@@ -108,10 +83,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     this.registerID = cadastro;
   };
 
-  function _adicionaDiversao(cadastro) {
-    // if (cadastro.brincando) {
-    //   service.alerta = 'Sessão já iniciada.';
-    // } else {
+  function _adicionaDiversao(cadastro) {    
     var defer = $q.defer();
     var diversao = new Diversao(cadastro);
     ajax.createEntity(URL, diversao).success(function (data) {
@@ -119,14 +91,7 @@ angular.module('angularApp').factory('cadastroDiversaoModel', function (ajax, $q
     }).error(function (data) {
       defer.reject(data);
     });
-    return defer.promise;
-    // cadastro.brincando = true;
-    // ajax.updateEntity(URL_CAD, cadastro).success(function (data) {
-    //   service.listaCadastros();
-    //   service.alerta = cadastro.nomeCrianca + ' aguardando para brincar...';
-    //   $location.path('/diversoes');
-    // });
-    //}
+    return defer.promise;    
   }
 
   var service = {

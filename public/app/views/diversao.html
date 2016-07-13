@@ -5,7 +5,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-info">
-				<strong>Atenção!</strong> {{model.alerta}}
+				<strong>Atenção!</strong> {{alerta}}
 			</div>
 			<table class="table table-hover table-striped table-condensed">
 				<thead>
@@ -18,7 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="diversao in model.diversoes">						
+					<tr ng-repeat="diversao in diversoes">						
 						<td ng-bind="diversao.nomeCrianca"></td>
 						<td ng-show="diversao.iniciada" colspan="2" style="text-align: center;">
 							<div ng-bind="diversao.inicio | date:'HH:mm'"></div>
@@ -63,7 +63,7 @@
 								<i class="fa fa-play"></i>
 							</button>
 
-							<button class="btn btn-danger" ng-click="model.cancelaDiversao(diversao);" ng-show="diversao.paga == false">
+							<button class="btn btn-danger" ng-click="cancelaDiversao(diversao);" ng-show="diversao.paga == false">
 								<i class="fa fa-stop" aria-hidden="true"></i>
 							</button>
 
@@ -71,15 +71,15 @@
 								<i class="fa fa-usd"></i>
 							</button>
 
-							<button class="btn btn-success" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="model.adicionaTempo(diversao)">
+							<button class="btn btn-success" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="adicionaTempo(diversao)">
 								<i class="fa fa-hourglass"></i><i class="fa fa-plus"></i>
 							</button>
 
-							<button class="btn btn-danger" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="model.diminuiTempo(diversao)">
+							<button class="btn btn-danger" ng-show="diversao.iniciada == true && diversao.paga == false" ng-click="diminuiTempo(diversao)">
 								<i class="fa fa-hourglass"></i><i class="fa fa-minus"></i>
 							</button>
 
-							<button class="btn btn-success" ng-click="model.finalizaDiversao(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
+							<button class="btn btn-success" ng-click="finalizaDiversao(diversao)" ng-show="diversao.iniciada == true && diversao.paga == true">
 								<i class="fa fa-floppy-o"></i><i class="fa fa-check"></i>
 							</button>
 

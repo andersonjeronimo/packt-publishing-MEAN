@@ -5,7 +5,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-info">
-				<strong>Atenção!</strong> {{model.alerta}}
+				<strong>Atenção!</strong> {{alerta}}
 			</div>
 			<table class="table table-hover table-striped table-condensed" style="overflow-y: auto; height: 500px; display: block;" role="table">
 				<div class="col-md-3">
@@ -30,15 +30,15 @@
 				</thead>
 
 				<tbody>
-					<tr ng-repeat="cadastro in model.cadastros | filter:view.filtro | orderBy:view.ordem">
+					<tr ng-repeat="cadastro in cadastros | filter:view.filtro | orderBy:view.ordem">
 						<td>
 							<a class="btn btn-primary" href="" data-toggle="tooltip" title="Editar" ng-click="view.change($index);" ng-hide="view.checked == $index" ng-disabled="cadastro.brincando"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
-							<a class="btn btn-success" href="" data-toggle="tooltip" title="Salvar" ng-click="model.atualizaCadastro(cadastro); view.change($index);"
+							<a class="btn btn-success" href="" data-toggle="tooltip" title="Salvar" ng-click="atualizaCadastro(cadastro); view.change($index);"
 							ng-show="view.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
 
 						</td>
 						<td>
-							<a class="btn btn-info" href="" data-toggle="tooltip" title="Brincar!" ng-click="model.adicionaDiversao(cadastro);" ng-hide="cadastro.brincando == true || view.checked == $index"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></a>
+							<a class="btn btn-info" href="" data-toggle="tooltip" title="Brincar!" ng-click="adicionaDiversao(cadastro);" ng-hide="cadastro.brincando == true || view.checked == $index"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></a>
 							<a class="btn btn-warning" href="" data-toggle="tooltip" title="Brincando!" ng-show="cadastro.brincando == true && !(view.checked == $index)"><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></a>
 							<a href="" data-toggle="tooltip" title="Editando..." ng-show="view.checked == $index"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
 						</td>
@@ -80,7 +80,7 @@
 							</select>
 						</td>
 						<td>
-							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="model.removeCadastro(cadastro);" ng-disabled="cadastro.brincando" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="removeCadastro(cadastro);" ng-disabled="cadastro.brincando" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 							<a href="" data-toggle="tooltip" title="Editando..." ng-show="view.checked == $index"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
 						</td>
 						<!--<td>
