@@ -5,7 +5,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-info">
-				<strong>Atenção!</strong> {{alerta}}
+				<i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><strong>{{alerta}}</strong>
 			</div>
 			<table class="table table-hover table-striped table-condensed" style="overflow-y: auto; height: 500px; display: block;" role="table">
 				<div class="col-md-3">
@@ -32,7 +32,7 @@
 				<tbody>
 					<tr ng-repeat="cadastro in cadastros | filter:view.filtro | orderBy:view.ordem">
 						<td>
-							<a class="btn btn-primary" href="" data-toggle="tooltip" title="Editar" ng-click="view.change($index);" ng-hide="view.checked == $index" ng-disabled="cadastro.brincando"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+							<a class="btn btn-primary" href="" data-toggle="tooltip" title="Editar" ng-click="view.change($index);" ng-class="{'disabled': cadastro.brincando}" ng-hide="view.checked == $index"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
 							<a class="btn btn-success" href="" data-toggle="tooltip" title="Salvar" ng-click="atualizaCadastro(cadastro); view.change($index);"
 							ng-show="view.checked == $index"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></a>
 
@@ -63,26 +63,26 @@
 								<div class="radio-inline">
 									<label>
 										<input type="radio" ng-model="view.telefone" ng-value="view.fixo" ng-checked="true">Fixo</label>
-								</div>
-								<div class="radio-inline">
-									<label>
-										<input type="radio" ng-model="view.telefone" ng-value="view.celular">Celular</label>
-								</div>
-								<input type="text" ng-show="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
-								<input type="text" ng-hide="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
-							</div>
-						</td>
-						<td>
-							<div ng-bind="cadastro.operadora" ng-hide="view.checked == $index"></div>
-							<select class="btn btn-primary dropdown-toggle" ng-model="cadastro.operadora" ng-options="operadora for operadora in view.operadoras"
-							ng-required="true" ng-show="view.checked == $index">
-								<option value="" disabled selected>{{cadastro.operadora}}</option>
-							</select>
-						</td>
-						<td>
-							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="removeCadastro(cadastro);" ng-disabled="cadastro.brincando" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
-							<a href="" data-toggle="tooltip" title="Editando..." ng-show="view.checked == $index"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
-						</td>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" ng-model="view.telefone" ng-value="view.celular">Celular</label>
+										</div>
+										<input type="text" ng-show="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
+										<input type="text" ng-hide="view.telefone.tipo == fixo" ng-model="cadastro.telefone" ui-mask={{view.telefone.filtro}}>
+									</div>
+								</td>
+								<td>
+									<div ng-bind="cadastro.operadora" ng-hide="view.checked == $index"></div>
+									<select class="btn btn-primary dropdown-toggle" ng-model="cadastro.operadora" ng-options="operadora for operadora in view.operadoras"
+									ng-required="true" ng-show="view.checked == $index">
+									<option value="" disabled selected>{{cadastro.operadora}}</option>
+								</select>
+							</td>
+							<td>
+							<a class="btn btn-danger" href="" data-toggle="tooltip" title="Remover" ng-click="removeCadastro(cadastro);" ng-class="{'disabled': cadastro.brincando}" ng-hide="view.checked == $index"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+								<a href="" data-toggle="tooltip" title="Editando..." ng-show="view.checked == $index"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
+							</td>
 						<!--<td>
 							<div ng-bind="cadastro.observacoes" ng-hide="view.checked == $index"></div>
 							<textarea cols="30" rows="3" ng-model="cadastro.observacoes" ng-show="view.checked == $index"></textarea>
