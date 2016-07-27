@@ -79,6 +79,6 @@ angular.module('angularApp').controller('diversoesController', function ($scope,
   };
     
 
-  listaDiversoes()
+  listaDiversoes();
 
 });

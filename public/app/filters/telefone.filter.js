@@ -1,6 +1,6 @@
 angular.module('angularApp').filter('telefone', function () {
   return function (input) {
-    input = input || '';
+    input = input || "";
     var out = "";
     var counter = 0;
     for (var i = 0; i < input.length; i++) {
